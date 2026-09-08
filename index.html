@@ -28,7 +28,7 @@
                         PRIME LEGENDS POLICE DEPARTMENT
                     </h1>
                     <span class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="connection-status" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         Official Personnel Roster
                     </span>
                 </div>
@@ -207,6 +207,7 @@
 
     <!-- JavaScript Logic -->
     <script>
+        const API_URL = "https://lspd-bot-production-1daf.up.railway.app";
         let officers = [];
         let isAdmin = false;
 
@@ -237,13 +238,12 @@
         const rankFilter = document.getElementById('rank-filter');
         const modal = document.getElementById('officer-modal');
         const officerForm = document.getElementById('officer-form');
+        const connectionStatus = document.getElementById('connection-status');
 
-        // Clean Badge Code from Officer Name (Prevents repetition of badge in name column)
         function processOfficerBadgeAndName(rawName, rawBadge) {
             let badge = (rawBadge || '').trim();
             let name = (rawName || '').trim();
 
-            // Match patterns like "T-0 FAYCEL", "C-2 | Olise", "M-0 - Lain", "308 MIN"
             const pattern = /^([A-Za-z0-9]+-[0-9]+|[A-Za-z0-9]+-[A-Za-z0-9]+|[0-9]+)\s*[\|-]?\s*(.+)$/i;
             const match = name.match(pattern);
 
@@ -251,7 +251,7 @@
                 if (!badge || badge === 'N/A' || badge.endsWith('-')) {
                     badge = match[1].trim();
                 }
-                name = match[2].trim(); // Extract clean name without badge prefix
+                name = match[2].trim();
             }
 
             return { 
@@ -262,16 +262,20 @@
 
         async function fetchLiveRoster() {
             try {
-                const response = await fetch('https://lspd-bot-production-1daf.up.railway.app/api/roster');
+                const response = await fetch(`${API_URL}/api/roster`);
                 if (response.ok) {
                     const data = await response.json();
-                    if (Array.isArray(data) && data.length > 0) {
+                    if (Array.isArray(data)) {
                         officers = data;
+                        connectionStatus.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
                         renderRoster();
                     }
+                } else {
+                    connectionStatus.className = 'w-2 h-2 rounded-full bg-red-500';
                 }
             } catch (error) {
                 console.error('API Fetch Error:', error);
+                connectionStatus.className = 'w-2 h-2 rounded-full bg-red-500';
             }
         }
 
