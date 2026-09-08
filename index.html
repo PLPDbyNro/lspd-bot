@@ -28,7 +28,7 @@
                         PRIME LEGENDS POLICE DEPARTMENT
                     </h1>
                     <span class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
-                        <span id="connection-status" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         Official Personnel Roster
                     </span>
                 </div>
@@ -207,7 +207,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        const API_URL = "https://lspd-bot-production-1daf.up.railway.app";
+        // كلمة السر الخاصة بالزر لتفعيل وضع الأدمن (يمكنك تغييرها من هنا)
+        const ADMIN_PASSWORD = "1444";
+
         let officers = [];
         let isAdmin = false;
 
@@ -238,8 +240,8 @@
         const rankFilter = document.getElementById('rank-filter');
         const modal = document.getElementById('officer-modal');
         const officerForm = document.getElementById('officer-form');
-        const connectionStatus = document.getElementById('connection-status');
 
+        // Clean Badge Code from Officer Name (Prevents repetition of badge in name column)
         function processOfficerBadgeAndName(rawName, rawBadge) {
             let badge = (rawBadge || '').trim();
             let name = (rawName || '').trim();
@@ -262,20 +264,16 @@
 
         async function fetchLiveRoster() {
             try {
-                const response = await fetch(`${API_URL}/api/roster`);
+                const response = await fetch('https://lspd-bot-production-1daf.up.railway.app/api/roster');
                 if (response.ok) {
                     const data = await response.json();
-                    if (Array.isArray(data)) {
+                    if (Array.isArray(data) && data.length > 0) {
                         officers = data;
-                        connectionStatus.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
                         renderRoster();
                     }
-                } else {
-                    connectionStatus.className = 'w-2 h-2 rounded-full bg-red-500';
                 }
             } catch (error) {
                 console.error('API Fetch Error:', error);
-                connectionStatus.className = 'w-2 h-2 rounded-full bg-red-500';
             }
         }
 
@@ -421,18 +419,26 @@
             });
         }
 
+        // حماية زر Admin Mode بكلمة المرور
         adminToggleBtn.addEventListener('click', () => {
-            isAdmin = !isAdmin;
-            if (isAdmin) {
-                adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
-                adminToggleBtn.innerHTML = '<i class="fa-solid fa-unlock"></i><span>Admin Mode Active</span>';
-                addMemberBtn.classList.remove('hidden');
+            if (!isAdmin) {
+                const password = prompt("الرجاء إدخال كلمة السر الخاصة بـ Admin Mode:");
+                if (password === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
+                    adminToggleBtn.innerHTML = '<i class="fa-solid fa-unlock"></i><span>Admin Mode Active</span>';
+                    addMemberBtn.classList.remove('hidden');
+                    renderRoster();
+                } else if (password !== null) {
+                    alert("كلمة السر غير صحيحة!");
+                }
             } else {
+                isAdmin = false;
                 adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2';
                 adminToggleBtn.innerHTML = '<i class="fa-solid fa-lock text-amber-400"></i><span>Admin Mode</span>';
                 addMemberBtn.classList.add('hidden');
+                renderRoster();
             }
-            renderRoster();
         });
 
         searchInput.addEventListener('input', renderRoster);
