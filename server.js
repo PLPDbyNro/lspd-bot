@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 // توكن البوت وأيدي السيرفر
-const BOT_TOKEN = 'MTU0Njg4NjI5NjQ4MjQ4ODQ2MA.G21jZQ.bioCeVMm1Ori2MgEw1VxfwK6ocK-UGLMMhe-FE';
+const BOT_TOKEN = process.env.DISCORD_TOKEN;
 const GUILD_ID = '1367860164740518010';
 
 // تعيين الرتب والأقسام
