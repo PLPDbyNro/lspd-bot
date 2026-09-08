@@ -207,8 +207,15 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // كلمة السر الخاصة بالزر لتفعيل وضع الأدمن (يمكنك تغييرها من هنا)
-        const ADMIN_PASSWORD = "1444";
+        // SHA-256 Hash الخاص بكلمة المرور 1444
+        const ADMIN_PASSWORD_HASH = "14e7a79a613b5308d28f0ee8333334f590123530e3bb45db474a00501a3cf838";
+
+        async function hashPassword(password) {
+            const msgUint8 = new TextEncoder().encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
 
         let officers = [];
         let isAdmin = false;
@@ -241,7 +248,7 @@
         const modal = document.getElementById('officer-modal');
         const officerForm = document.getElementById('officer-form');
 
-        // Clean Badge Code from Officer Name (Prevents repetition of badge in name column)
+        // Clean Badge Code from Officer Name
         function processOfficerBadgeAndName(rawName, rawBadge) {
             let badge = (rawBadge || '').trim();
             let name = (rawName || '').trim();
@@ -419,18 +426,21 @@
             });
         }
 
-        // حماية زر Admin Mode بكلمة المرور
-        adminToggleBtn.addEventListener('click', () => {
+        // حماية زر Admin Mode بالـ Hash المشفر
+        adminToggleBtn.addEventListener('click', async () => {
             if (!isAdmin) {
                 const password = prompt("الرجاء إدخال كلمة السر الخاصة بـ Admin Mode:");
-                if (password === ADMIN_PASSWORD) {
-                    isAdmin = true;
-                    adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
-                    adminToggleBtn.innerHTML = '<i class="fa-solid fa-unlock"></i><span>Admin Mode Active</span>';
-                    addMemberBtn.classList.remove('hidden');
-                    renderRoster();
-                } else if (password !== null) {
-                    alert("كلمة السر غير صحيحة!");
+                if (password !== null) {
+                    const inputHash = await hashPassword(password);
+                    if (inputHash === ADMIN_PASSWORD_HASH) {
+                        isAdmin = true;
+                        adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
+                        adminToggleBtn.innerHTML = '<i class="fa-solid fa-unlock"></i><span>Admin Mode Active</span>';
+                        addMemberBtn.classList.remove('hidden');
+                        renderRoster();
+                    } else {
+                        alert("كلمة السر غير صحيحة!");
+                    }
                 }
             } else {
                 isAdmin = false;
