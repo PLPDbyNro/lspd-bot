@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
             <div class="flex items-center gap-4">
                 <!-- Prime Legends Logo -->
                 <div class="relative group">
-                    <img src="logo.png" alt="Prime Legends Logo" class="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-105">
+                    <img src="logo.png" alt="Prime Legends Logo" class="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/60?text=PLPD'">
                 </div>
                 <div>
                     <h1 class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-amber-300">
@@ -38,17 +38,17 @@
             <div class="flex items-center gap-4">
                 <div class="hidden md:flex items-center gap-6 bg-slate-950/80 px-4 py-2 rounded-xl border border-slate-800 text-xs shadow-inner">
                     <div>
-                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">Total Personnel</span>
+                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">إجمالي الضباط</span>
                         <span id="stat-total" class="font-bold text-blue-400 text-sm">0</span>
                     </div>
                     <div class="w-px h-6 bg-slate-800"></div>
                     <div>
-                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">Active Duty</span>
+                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">في الخدمة</span>
                         <span id="stat-active" class="font-bold text-emerald-400 text-sm">0</span>
                     </div>
                     <div class="w-px h-6 bg-slate-800"></div>
                     <div>
-                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">Command Staff</span>
+                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">القيادة العليا</span>
                         <span id="stat-command" class="font-bold text-amber-400 text-sm">0</span>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
             <!-- Search & Filters -->
             <div class="flex flex-1 flex-col sm:flex-row gap-3">
                 <div class="relative flex-1">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-                    <input type="text" id="search-input" placeholder="Search officer, badge #, or Discord ID..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                    <input type="text" id="search-input" placeholder="بحث عن ضابط، الرقم العسكري، أو Discord ID..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pr-10 pl-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
                 </div>
                 <select id="rank-filter" class="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
-                    <option value="ALL">All Categories</option>
+                    <option value="ALL">جميع الأقسام</option>
                     <option value="Police Administration">Police Administration</option>
                     <option value="Upper Administration">Upper Administration</option>
                     <option value="High Command">High Command</option>
@@ -87,11 +87,11 @@
             <div class="flex items-center gap-3">
                 <button id="export-csv" class="px-3.5 py-2 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-semibold text-slate-300 transition flex items-center gap-2">
                     <i class="fa-solid fa-file-csv text-emerald-400"></i>
-                    <span>Export CSV</span>
+                    <span>تصدير CSV</span>
                 </button>
                 <button id="add-member-btn" class="hidden px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-blue-600/20 transition flex items-center gap-2">
                     <i class="fa-solid fa-plus"></i>
-                    <span>Add Officer</span>
+                    <span>إضافة ضابط</span>
                 </button>
             </div>
         </div>
@@ -117,7 +117,7 @@
             <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
                 <h3 id="modal-title" class="font-bold text-slate-100 flex items-center gap-2">
                     <i class="fa-solid fa-user-plus text-blue-400"></i>
-                    <span>Add New Officer</span>
+                    <span>إضافة ضابط جديد</span>
                 </h3>
                 <button id="close-modal" class="text-slate-500 hover:text-slate-300 text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -127,18 +127,18 @@
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Badge NO</label>
-                        <input type="text" id="form-badge" placeholder="e.g. T-0, C-2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">الرقم العسكري (Badge)</label>
+                        <input type="text" id="form-badge" placeholder="مثال: T-0, C-2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Officer Name</label>
-                        <input type="text" id="form-name" required placeholder="e.g. Faycel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">اسم الضابط</label>
+                        <input type="text" id="form-name" required placeholder="مثال: Faycel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Rank Title</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">الرتبة</label>
                         <select id="form-rank" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                             <option value="Police Chief">Police Chief</option>
                             <option value="Vice Chief">Vice Chief</option>
@@ -156,10 +156,11 @@
                             <option value="Officer II">Officer II</option>
                             <option value="Officer I">Officer I</option>
                             <option value="Solo Cadet">Solo Cadet</option>
+                            <option value="Cadet">Cadet</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Category Group</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">الفئة</label>
                         <select id="form-category" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                             <option value="Police Administration">Police Administration</option>
                             <option value="Upper Administration">Upper Administration</option>
@@ -173,33 +174,33 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Responsibility / Role</label>
-                        <input type="text" id="form-responsibility" placeholder="e.g. FTO, Air Unit, N/A" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">المهام / المسؤولية</label>
+                        <input type="text" id="form-responsibility" placeholder="مثال: FTO, Air Unit" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Duty Status</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">حالة الخدمة</label>
                         <select id="form-status" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                             <option value="Active">Active</option>
-                            <option value="LOA">LOA (On Leave)</option>
-                            <option value="Suspended">Suspended</option>
+                            <option value="LOA">LOA (إجازة)</option>
+                            <option value="Suspended">Suspended (موقوف)</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Strikes Count</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">عدد الإنذارات (Strikes)</label>
                         <input type="number" id="form-strikes" min="0" max="3" value="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Discord ID</label>
-                        <input type="text" id="form-discord" placeholder="18-digit ID" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <input type="text" id="form-discord" placeholder="معرف الديسكورد" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                 </div>
 
                 <div class="pt-4 border-t border-slate-800 flex justify-end gap-3">
-                    <button type="button" id="cancel-modal" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-blue-600/20">Save Officer</button>
+                    <button type="button" id="cancel-modal" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-blue-600/20">حفظ الضابط</button>
                 </div>
             </form>
         </div>
@@ -207,7 +208,6 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // SHA-256 Hash الخاص بكلمة المرور 1444
         const ADMIN_PASSWORD_HASH = "14e7a79a613b5308d28f0ee8333334f590123530e3bb45db474a00501a3cf838";
 
         async function hashPassword(password) {
@@ -221,23 +221,10 @@
         let isAdmin = false;
 
         const rankOrder = {
-            "Police Chief": 1,
-            "Vice Chief": 2,
-            "Assistant Chief": 3,
-            "Deputy Chief": 4,
-            "Major": 5,
-            "Captain": 6,
-            "Lieutenant II": 7,
-            "Lieutenant I": 8,
-            "Staff Sergeant": 9,
-            "First Sergeant": 10,
-            "Sergeant": 11,
-            "Senior Officer": 12,
-            "Officer III": 13,
-            "Officer II": 14,
-            "Officer I": 15,
-            "Solo Cadet": 16,
-            "Cadet": 17
+            "Police Chief": 1, "Vice Chief": 2, "Assistant Chief": 3, "Deputy Chief": 4,
+            "Major": 5, "Captain": 6, "Lieutenant II": 7, "Lieutenant I": 8,
+            "Staff Sergeant": 9, "First Sergeant": 10, "Sergeant": 11, "Senior Officer": 12,
+            "Officer III": 13, "Officer II": 14, "Officer I": 15, "Solo Cadet": 16, "Cadet": 17
         };
 
         const rosterContainer = document.getElementById('roster-container');
@@ -248,11 +235,9 @@
         const modal = document.getElementById('officer-modal');
         const officerForm = document.getElementById('officer-form');
 
-        // Clean Badge Code from Officer Name
         function processOfficerBadgeAndName(rawName, rawBadge) {
             let badge = (rawBadge || '').trim();
             let name = (rawName || '').trim();
-
             const pattern = /^([A-Za-z0-9]+-[0-9]+|[A-Za-z0-9]+-[A-Za-z0-9]+|[0-9]+)\s*[\|-]?\s*(.+)$/i;
             const match = name.match(pattern);
 
@@ -263,24 +248,35 @@
                 name = match[2].trim();
             }
 
-            return { 
-                badge: badge || 'N/A', 
-                name: name || 'Officer' 
-            };
+            return { badge: badge || 'N/A', name: name || 'Officer' };
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('plpd_officers_data', JSON.stringify(officers));
         }
 
         async function fetchLiveRoster() {
+            const localData = localStorage.getItem('plpd_officers_data');
+            if (localData && officers.length === 0) {
+                try {
+                    officers = JSON.parse(localData);
+                    renderRoster();
+                } catch(e) { console.error("Error reading LocalStorage", e); }
+            }
+
             try {
                 const response = await fetch('https://lspd-bot-production-1daf.up.railway.app/api/roster');
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data) && data.length > 0) {
                         officers = data;
+                        saveToLocalStorage();
                         renderRoster();
                     }
                 }
             } catch (error) {
-                console.error('API Fetch Error:', error);
+                console.warn('API Fetch failed, using local/cached data:', error);
+                if (officers.length > 0) renderRoster();
             }
         }
 
@@ -305,15 +301,13 @@
         function getRankWeight(rankName) {
             if (!rankName) return 99;
             for (let rank in rankOrder) {
-                if (rankName.toLowerCase().trim() === rank.toLowerCase().trim()) {
-                    return rankOrder[rank];
-                }
+                if (rankName.toLowerCase().trim() === rank.toLowerCase().trim()) return rankOrder[rank];
             }
             return 99;
         }
 
         function renderRoster() {
-            const query = searchInput.value.toLowerCase();
+            const query = searchInput.value.toLowerCase().trim();
             const filterCat = rankFilter.value;
 
             const filtered = officers.filter(o => {
@@ -322,32 +316,23 @@
                 const name = parsed.name.toLowerCase();
                 const discord = String(o.discord || '');
 
-                const matchesSearch = name.includes(query) || 
-                                      badge.includes(query) || 
-                                      discord.includes(query);
+                const matchesSearch = name.includes(query) || badge.includes(query) || discord.includes(query);
                 const matchesCat = filterCat === 'ALL' || o.category === filterCat;
                 return matchesSearch && matchesCat;
             });
 
             document.getElementById('stat-total').innerText = officers.length;
             document.getElementById('stat-active').innerText = officers.filter(o => o.status === 'Active').length;
-            document.getElementById('stat-command').innerText = officers.filter(o => o.category === 'Police Administration' || o.category === 'Upper Administration' || o.category === 'High Command').length;
+            document.getElementById('stat-command').innerText = officers.filter(o => ['Police Administration', 'Upper Administration', 'High Command'].includes(o.category)).length;
 
-            const categories = [
-                'Police Administration', 
-                'Upper Administration', 
-                'High Command', 
-                'Supervisors', 
-                'Patrol Units', 
-                'Cadet'
-            ];
+            const categories = ['Police Administration', 'Upper Administration', 'High Command', 'Supervisors', 'Patrol Units', 'Cadet'];
             rosterContainer.innerHTML = '';
 
             if (filtered.length === 0) {
                 rosterContainer.innerHTML = `
                     <div class="text-center py-12 bg-slate-900 rounded-xl border border-slate-800">
                         <i class="fa-solid fa-user-slash text-4xl text-slate-600 mb-3 block"></i>
-                        <p class="text-slate-400 font-medium text-sm">No officers found matching your criteria.</p>
+                        <p class="text-slate-400 font-medium text-sm">لم يتم العثور على ضباط يطابقون خيارات البحث.</p>
                     </div>
                 `;
                 return;
@@ -360,9 +345,7 @@
                 catOfficers.sort((a, b) => {
                     const weightA = getRankWeight(a.rank);
                     const weightB = getRankWeight(b.rank);
-                    if (weightA !== weightB) {
-                        return weightA - weightB;
-                    }
+                    if (weightA !== weightB) return weightA - weightB;
                     const badgeA = processOfficerBadgeAndName(a.name, a.badge).badge;
                     const badgeB = processOfficerBadgeAndName(b.name, b.badge).badge;
                     return badgeA.localeCompare(badgeB, undefined, { numeric: true, sensitivity: 'base' });
@@ -378,7 +361,7 @@
                     <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition">
                         <td class="px-4 py-3 text-xs font-mono font-bold ${isRedBadge ? 'text-red-400' : 'text-blue-400'}">${parsed.badge}</td>
                         <td class="px-4 py-3 text-sm font-semibold text-slate-100">${parsed.name}</td>
-                        <td class="px-4 py-3 text-xs font-medium text-amber-400/90">${o.rank}</td>
+                        <td class="px-4 py-3 text-xs font-medium text-amber-400/90">${o.rank || 'غير محدد'}</td>
                         <td class="px-4 py-3 text-xs text-slate-400">${o.responsibility || 'N/A'}</td>
                         <td class="px-4 py-3 text-xs text-center">${renderInsignia(o.insignia)}</td>
                         <td class="px-4 py-3 text-xs text-center">
@@ -387,9 +370,9 @@
                         <td class="px-4 py-3 text-xs text-center font-mono ${o.strikes > 0 ? 'text-red-400 font-bold' : 'text-slate-500'}">${o.strikes || 0}</td>
                         <td class="px-4 py-3 text-xs font-mono text-slate-400">${o.discord || o.id}</td>
                         ${isAdmin ? `
-                            <td class="px-4 py-3 text-xs text-right space-x-2">
-                                <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300"><i class="fa-solid fa-pen"></i></button>
-                                <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                            <td class="px-4 py-3 text-xs text-left space-x-2 space-x-reverse">
+                                <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300 p-1"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         ` : ''}
                     </tr>
@@ -401,21 +384,21 @@
                             <span class="w-2 h-2 rounded-full ${cat === 'Police Administration' ? 'bg-amber-500' : 'bg-blue-500'}"></span>
                             ${cat}
                         </h2>
-                        <span class="text-xs font-mono text-slate-500">${catOfficers.length} Members</span>
+                        <span class="text-xs font-mono text-slate-500">${catOfficers.length} أعضاء</span>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-right border-collapse">
                             <thead>
                                 <tr class="bg-slate-900/50 text-[11px] font-semibold text-slate-500 uppercase border-b border-slate-800">
                                     <th class="px-4 py-2">Badge</th>
-                                    <th class="px-4 py-2">Name</th>
-                                    <th class="px-4 py-2">Rank</th>
-                                    <th class="px-4 py-2">Responsibility</th>
-                                    <th class="px-4 py-2 text-center">Insignia</th>
-                                    <th class="px-4 py-2 text-center">Status</th>
-                                    <th class="px-4 py-2 text-center">Strikes</th>
+                                    <th class="px-4 py-2">الاسم</th>
+                                    <th class="px-4 py-2">الرتبة</th>
+                                    <th class="px-4 py-2">المسؤولية</th>
+                                    <th class="px-4 py-2 text-center">الشارة</th>
+                                    <th class="px-4 py-2 text-center">الحالة</th>
+                                    <th class="px-4 py-2 text-center">الإنذارات</th>
                                     <th class="px-4 py-2">Discord ID</th>
-                                    ${isAdmin ? '<th class="px-4 py-2 text-right">Actions</th>' : ''}
+                                    ${isAdmin ? '<th class="px-4 py-2 text-left">إجراءات</th>' : ''}
                                 </tr>
                             </thead>
                             <tbody>${rowsHtml}</tbody>
@@ -426,7 +409,6 @@
             });
         }
 
-        // حماية زر Admin Mode بالـ Hash المشفر
         adminToggleBtn.addEventListener('click', async () => {
             if (!isAdmin) {
                 const password = prompt("الرجاء إدخال كلمة السر الخاصة بـ Admin Mode:");
@@ -457,7 +439,7 @@
         addMemberBtn.addEventListener('click', () => {
             officerForm.reset();
             document.getElementById('form-id').value = '';
-            document.getElementById('modal-title').innerText = 'Add New Officer';
+            document.getElementById('modal-title').innerText = 'إضافة ضابط جديد';
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         });
@@ -493,6 +475,7 @@
                 officers.push(newOfficer);
             }
 
+            saveToLocalStorage();
             closeModal();
             renderRoster();
         });
@@ -513,14 +496,15 @@
             document.getElementById('form-strikes').value = officer.strikes || 0;
             document.getElementById('form-discord').value = officer.discord || officer.id;
 
-            document.getElementById('modal-title').innerText = 'Edit Officer Record';
+            document.getElementById('modal-title').innerText = 'تعديل بيانات الضابط';
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         };
 
         window.deleteOfficer = function(id) {
-            if (confirm('Are you sure you want to delete this officer record?')) {
+            if (confirm('هل أنت تأكد من إزالة هذا الضابط من السجل؟')) {
                 officers = officers.filter(o => String(o.id) !== String(id));
+                saveToLocalStorage();
                 renderRoster();
             }
         };
@@ -531,7 +515,7 @@
                 const parsed = processOfficerBadgeAndName(o.name, o.badge);
                 csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
             });
-            const blob = new Blob([csv], { type: 'text/csv' });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
@@ -540,7 +524,7 @@
         });
 
         fetchLiveRoster();
-        setInterval(fetchLiveRoster, 10000);
+        setInterval(fetchLiveRoster, 15000);
     </script>
 </body>
 </html>
