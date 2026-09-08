@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LSPD Roster Platform</title>
+    <title>Prime Legends Police Department - Personnel Roster</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -16,21 +16,27 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
 
     <!-- Top Navigation Header -->
-    <header class="bg-slate-900/80 backdrop-blur border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
-                    <i class="fa-solid fa-shield-halved text-xl"></i>
+    <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <!-- Prime Legends Logo -->
+                <div class="relative group">
+                    <img src="logo.png" alt="Prime Legends Logo" class="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg leading-none tracking-wide text-white">LOS SANTOS POLICE DEPT.</h1>
-                    <span class="text-xs text-slate-400 font-mono">OFFICIAL PERSONNEL ROSTER</span>
+                    <h1 class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-amber-300">
+                        PRIME LEGENDS POLICE DEPARTMENT
+                    </h1>
+                    <span class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Official Personnel Roster
+                    </span>
                 </div>
             </div>
 
             <!-- Stats Bar & Mode Toggle -->
             <div class="flex items-center gap-4">
-                <div class="hidden md:flex items-center gap-6 bg-slate-950/60 px-4 py-1.5 rounded-lg border border-slate-800 text-xs">
+                <div class="hidden md:flex items-center gap-6 bg-slate-950/80 px-4 py-2 rounded-xl border border-slate-800 text-xs shadow-inner">
                     <div>
                         <span class="text-slate-500 uppercase block text-[10px] font-semibold">Total Personnel</span>
                         <span id="stat-total" class="font-bold text-blue-400 text-sm">0</span>
@@ -47,7 +53,7 @@
                     </div>
                 </div>
 
-                <button id="admin-toggle-btn" class="px-3.5 py-1.5 rounded-md text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2">
+                <button id="admin-toggle-btn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2 shadow-md">
                     <i class="fa-solid fa-lock text-amber-400"></i>
                     <span>Admin Mode</span>
                 </button>
@@ -79,7 +85,7 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-3">
-                <button id="export-csv" class="px-3 py-2 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-semibold text-slate-300 transition flex items-center gap-2">
+                <button id="export-csv" class="px-3.5 py-2 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-semibold text-slate-300 transition flex items-center gap-2">
                     <i class="fa-solid fa-file-csv text-emerald-400"></i>
                     <span>Export CSV</span>
                 </button>
@@ -100,7 +106,7 @@
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <span>Los Santos Police Department &bull; Automated Roster System</span>
+            <span>Prime Legends Police Department &bull; Automated Roster System</span>
             <span class="text-slate-600 font-mono">Public View Mode</span>
         </div>
     </footer>
@@ -122,11 +128,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Badge NO</label>
-                        <input type="text" id="form-badge" required placeholder="e.g. P-0, S-1" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <input type="text" id="form-badge" placeholder="e.g. T-0, C-2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Officer Name</label>
-                        <input type="text" id="form-name" required placeholder="e.g. Faycel Carillo" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <input type="text" id="form-name" required placeholder="e.g. Faycel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                 </div>
 
@@ -204,7 +210,26 @@
         let officers = [];
         let isAdmin = false;
 
-        // Dom Elements
+        const rankOrder = {
+            "Police Chief": 1,
+            "Vice Chief": 2,
+            "Assistant Chief": 3,
+            "Deputy Chief": 4,
+            "Major": 5,
+            "Captain": 6,
+            "Lieutenant II": 7,
+            "Lieutenant I": 8,
+            "Staff Sergeant": 9,
+            "First Sergeant": 10,
+            "Sergeant": 11,
+            "Senior Officer": 12,
+            "Officer III": 13,
+            "Officer II": 14,
+            "Officer I": 15,
+            "Solo Cadet": 16,
+            "Cadet": 17
+        };
+
         const rosterContainer = document.getElementById('roster-container');
         const adminToggleBtn = document.getElementById('admin-toggle-btn');
         const addMemberBtn = document.getElementById('add-member-btn');
@@ -213,10 +238,31 @@
         const modal = document.getElementById('officer-modal');
         const officerForm = document.getElementById('officer-form');
 
-        // Fetch Live Data from Backend API
+        // Clean Badge Code from Officer Name (Prevents repetition of badge in name column)
+        function processOfficerBadgeAndName(rawName, rawBadge) {
+            let badge = (rawBadge || '').trim();
+            let name = (rawName || '').trim();
+
+            // Match patterns like "T-0 FAYCEL", "C-2 | Olise", "M-0 - Lain", "308 MIN"
+            const pattern = /^([A-Za-z0-9]+-[0-9]+|[A-Za-z0-9]+-[A-Za-z0-9]+|[0-9]+)\s*[\|-]?\s*(.+)$/i;
+            const match = name.match(pattern);
+
+            if (match) {
+                if (!badge || badge === 'N/A' || badge.endsWith('-')) {
+                    badge = match[1].trim();
+                }
+                name = match[2].trim(); // Extract clean name without badge prefix
+            }
+
+            return { 
+                badge: badge || 'N/A', 
+                name: name || 'Officer' 
+            };
+        }
+
         async function fetchLiveRoster() {
             try {
-                const response = await fetch('http://localhost:3000/api/roster');
+                const response = await fetch('https://lspd-bot-production-1daf.up.railway.app/api/roster');
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data) && data.length > 0) {
@@ -229,7 +275,6 @@
             }
         }
 
-        // Render Insignia Icons
         function renderInsignia(type) {
             switch(type) {
                 case '5star': return '<span class="text-amber-400 font-bold">★★★★★</span>';
@@ -248,30 +293,37 @@
             }
         }
 
-        // Render Roster Data
+        function getRankWeight(rankName) {
+            if (!rankName) return 99;
+            for (let rank in rankOrder) {
+                if (rankName.toLowerCase().trim() === rank.toLowerCase().trim()) {
+                    return rankOrder[rank];
+                }
+            }
+            return 99;
+        }
+
         function renderRoster() {
             const query = searchInput.value.toLowerCase();
             const filterCat = rankFilter.value;
 
-            // Filter logic
             const filtered = officers.filter(o => {
-                const badge = o.badge || '';
-                const name = o.name || '';
+                const parsed = processOfficerBadgeAndName(o.name, o.badge);
+                const badge = parsed.badge.toLowerCase();
+                const name = parsed.name.toLowerCase();
                 const discord = String(o.discord || '');
 
-                const matchesSearch = name.toLowerCase().includes(query) || 
-                                      badge.toLowerCase().includes(query) || 
+                const matchesSearch = name.includes(query) || 
+                                      badge.includes(query) || 
                                       discord.includes(query);
                 const matchesCat = filterCat === 'ALL' || o.category === filterCat;
                 return matchesSearch && matchesCat;
             });
 
-            // Update Header Stats
             document.getElementById('stat-total').innerText = officers.length;
             document.getElementById('stat-active').innerText = officers.filter(o => o.status === 'Active').length;
             document.getElementById('stat-command').innerText = officers.filter(o => o.category === 'Police Administration' || o.category === 'Upper Administration' || o.category === 'High Command').length;
 
-            // Strict Category Ordering
             const categories = [
                 'Police Administration', 
                 'Upper Administration', 
@@ -286,23 +338,37 @@
                 rosterContainer.innerHTML = `
                     <div class="text-center py-12 bg-slate-900 rounded-xl border border-slate-800">
                         <i class="fa-solid fa-user-slash text-4xl text-slate-600 mb-3 block"></i>
-                        <p class="text-slate-400 font-medium text-sm">No officers found matching your criteria or server disconnected.</p>
+                        <p class="text-slate-400 font-medium text-sm">No officers found matching your criteria.</p>
                     </div>
                 `;
                 return;
             }
 
             categories.forEach(cat => {
-                const catOfficers = filtered.filter(o => o.category === cat);
+                let catOfficers = filtered.filter(o => o.category === cat);
                 if (catOfficers.length === 0) return;
+
+                catOfficers.sort((a, b) => {
+                    const weightA = getRankWeight(a.rank);
+                    const weightB = getRankWeight(b.rank);
+                    if (weightA !== weightB) {
+                        return weightA - weightB;
+                    }
+                    const badgeA = processOfficerBadgeAndName(a.name, a.badge).badge;
+                    const badgeB = processOfficerBadgeAndName(b.name, b.badge).badge;
+                    return badgeA.localeCompare(badgeB, undefined, { numeric: true, sensitivity: 'base' });
+                });
 
                 const section = document.createElement('div');
                 section.className = 'bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg';
 
-                let rowsHtml = catOfficers.map(o => `
+                let rowsHtml = catOfficers.map(o => {
+                    const parsed = processOfficerBadgeAndName(o.name, o.badge);
+                    const isRedBadge = parsed.badge.startsWith('P-') || parsed.badge.startsWith('A-') || parsed.badge.startsWith('T-');
+                    return `
                     <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition">
-                        <td class="px-4 py-3 text-xs font-mono font-bold ${String(o.badge).startsWith('P') ? 'text-red-400' : 'text-blue-400'}">${o.badge || 'N/A'}</td>
-                        <td class="px-4 py-3 text-sm font-semibold text-slate-100">${o.name}</td>
+                        <td class="px-4 py-3 text-xs font-mono font-bold ${isRedBadge ? 'text-red-400' : 'text-blue-400'}">${parsed.badge}</td>
+                        <td class="px-4 py-3 text-sm font-semibold text-slate-100">${parsed.name}</td>
                         <td class="px-4 py-3 text-xs font-medium text-amber-400/90">${o.rank}</td>
                         <td class="px-4 py-3 text-xs text-slate-400">${o.responsibility || 'N/A'}</td>
                         <td class="px-4 py-3 text-xs text-center">${renderInsignia(o.insignia)}</td>
@@ -318,7 +384,7 @@
                             </td>
                         ` : ''}
                     </tr>
-                `).join('');
+                `}).join('');
 
                 section.innerHTML = `
                     <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
@@ -351,26 +417,23 @@
             });
         }
 
-        // Toggle Admin Mode
         adminToggleBtn.addEventListener('click', () => {
             isAdmin = !isAdmin;
             if (isAdmin) {
-                adminToggleBtn.className = 'px-3.5 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
+                adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2';
                 adminToggleBtn.innerHTML = '<i class="fa-solid fa-unlock"></i><span>Admin Mode Active</span>';
                 addMemberBtn.classList.remove('hidden');
             } else {
-                adminToggleBtn.className = 'px-3.5 py-1.5 rounded-md text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2';
+                adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2';
                 adminToggleBtn.innerHTML = '<i class="fa-solid fa-lock text-amber-400"></i><span>Admin Mode</span>';
                 addMemberBtn.classList.add('hidden');
             }
             renderRoster();
         });
 
-        // Search & Filter Events
         searchInput.addEventListener('input', renderRoster);
         rankFilter.addEventListener('change', renderRoster);
 
-        // Modal Controls
         addMemberBtn.addEventListener('click', () => {
             officerForm.reset();
             document.getElementById('form-id').value = '';
@@ -387,7 +450,6 @@
             modal.classList.remove('flex');
         }
 
-        // Form Submit
         officerForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const id = document.getElementById('form-id').value;
@@ -415,14 +477,15 @@
             renderRoster();
         });
 
-        // Edit Officer
         window.editOfficer = function(id) {
             const officer = officers.find(o => String(o.id) === String(id));
             if (!officer) return;
 
+            const parsed = processOfficerBadgeAndName(officer.name, officer.badge);
+
             document.getElementById('form-id').value = officer.id;
-            document.getElementById('form-badge').value = officer.badge || '';
-            document.getElementById('form-name').value = officer.name || '';
+            document.getElementById('form-badge').value = parsed.badge;
+            document.getElementById('form-name').value = parsed.name;
             document.getElementById('form-rank').value = officer.rank || 'Officer I';
             document.getElementById('form-category').value = officer.category || 'Patrol Units';
             document.getElementById('form-responsibility').value = officer.responsibility || '';
@@ -435,7 +498,6 @@
             modal.classList.add('flex');
         };
 
-        // Delete Officer
         window.deleteOfficer = function(id) {
             if (confirm('Are you sure you want to delete this officer record?')) {
                 officers = officers.filter(o => String(o.id) !== String(id));
@@ -443,21 +505,20 @@
             }
         };
 
-        // CSV Export
         document.getElementById('export-csv').addEventListener('click', () => {
             let csv = 'Badge,Name,Rank,Category,Responsibility,Status,Strikes,DiscordID\n';
             officers.forEach(o => {
-                csv += `"${o.badge || ''}","${o.name || ''}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
+                const parsed = processOfficerBadgeAndName(o.name, o.badge);
+                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
-            a.setAttribute('download', 'LSPD_Personnel_Roster.csv');
+            a.setAttribute('download', 'PLPD_Personnel_Roster.csv');
             a.click();
         });
 
-        // Initial Fetch & Auto Poll Every 10 Seconds
         fetchLiveRoster();
         setInterval(fetchLiveRoster, 10000);
     </script>
