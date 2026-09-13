@@ -572,34 +572,57 @@
         };
 
         window.deleteOfficer = async function(id) {
-            if (confirm('Are you sure you want to delete this officer record?')) {
-                try {
-                    const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-                    if (response.ok) {
-                        await fetchLiveRoster();
-                    } else {
-                        officers = officers.filter(o => String(o.id) !== String(id));
-                        renderRoster();
-                    }
-                } catch (err) {
+            if (!confirm("Are you sure you want to delete this officer record?")) return;
+
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    await fetchLiveRoster();
+                } else {
                     officers = officers.filter(o => String(o.id) !== String(id));
                     renderRoster();
                 }
+            } catch (err) {
+                console.warn('Backend delete failed, performing local UI update', err);
+                officers = officers.filter(o => String(o.id) !== String(id));
+                renderRoster();
             }
         };
 
         document.getElementById('export-csv').addEventListener('click', () => {
-            let csv = 'Badge,Name,Rank,Category,Responsibility,Status,Strikes,DiscordID\n';
+            if (officers.length === 0) {
+                alert("No officer data available to export.");
+                return;
+            }
+
+            const headers = ["Badge", "Name", "Rank", "Category", "Responsibility", "Status", "Strikes", "Discord ID"];
+            const csvRows = [headers.join(",")];
+
             officers.forEach(o => {
                 const parsed = processOfficerBadgeAndName(o.name, o.badge);
-                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
+                const row = [
+                    `"${parsed.badge}"`,
+                    `"${parsed.name}"`,
+                    `"${o.rank || 'Cadet'}"`,
+                    `"${o.category || 'Cadet'}"`,
+                    `"${o.responsibility || 'N/A'}"`,
+                    `"${o.status || 'Active'}"`,
+                    `"${o.strikes || 0}"`,
+                    `"${o.discord || o.id}"`
+                ];
+                csvRows.push(row.join(","));
             });
-            const blob = new Blob([csv], { type: 'text/csv' });
+
+            const blob = new Blob([csvRows.join("\n")], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
-            a.setAttribute('download', 'PLPD_Personnel_Roster.csv');
+            a.setAttribute('download', `PLPD_Roster_${new Date().toISOString().slice(0, 10)}.csv`);
             a.click();
+            window.URL.revokeObjectURL(url);
         });
 
         fetchLiveRoster();
