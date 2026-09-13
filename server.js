@@ -37,16 +37,16 @@ const ROLE_MAPPINGS = [
     { id: "1367892038963429406", rank: "Cadet", category: "Cadet", badgePrefix: "300" }
 ];
 
-// Robust parser for badges and officer names
+// Enhanced parser supporting all name formats (e.g. "300 Name", "C-2 Name", "Name | 300")
 function parseUserBadgeAndName(displayName, fallbackPrefix) {
     const raw = (displayName || '').trim();
-    // Improved regex to support space-separated numbers (e.g. "300 Siraj")
-    const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
-
-    if (match) {
+    
+    // Match badges like "300 Name", "C-12 Name", "S-1 | Name"
+    const prefixMatch = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s*(.+)$/i);
+    if (prefixMatch && prefixMatch[2]) {
         return {
-            badge: match[1].trim(),
-            name: match[2].trim()
+            badge: prefixMatch[1].trim(),
+            name: prefixMatch[2].trim()
         };
     }
 
@@ -59,7 +59,8 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
 app.get('/api/roster', async (req, res) => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        const members = await guild.members.fetch(); 
+        // Force fetch all members from gateway to bypass cache limit
+        const members = await guild.members.fetch({ time: 10000 }); 
         const roster = [];
 
         members.forEach(member => {
