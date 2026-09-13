@@ -38,12 +38,14 @@ const ROLE_MAPPINGS = [
 
 function parseUserBadgeAndName(displayName, fallbackPrefix) {
     const raw = (displayName || '').trim();
-    const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
+    
+    // استخراج الرقم (البادج) سواء كان متبوعاً بـ | أو - أو مسافة
+    const match = raw.match(/^([A-Za-z0-9]+)\s*[\|-]?\s*(.+)$/i);
 
     if (match) {
         return {
             badge: match[1].trim(),
-            name: match[2].trim()
+            name: match[2].replace(/^[\|-]\s*/, '').trim()
         };
     }
 
@@ -56,16 +58,21 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
 app.get('/api/roster', async (req, res) => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        const members = await guild.members.fetch({ force: true }); 
+        
+        // جلب جميع الأعضاء بالكامل
+        const members = await guild.members.fetch(); 
         const roster = [];
 
         members.forEach(member => {
             if (member.user.bot) return;
 
-            // تحديد أعلى رتبة يمتلكها العضو حسب ترتيب القائمة
-            const userRole = ROLE_MAPPINGS.find(config => member.roles.cache.has(config.id));
+            const userRoles = ROLE_MAPPINGS.filter(config => member.roles.cache.has(config.id));
 
-            if (userRole) {
+            if (userRoles.length > 0) {
+                // إعطاء الأولوية لرتبة الكاديت إذا كان يمتلكها
+                const cadetRole = userRoles.find(r => r.category === 'Cadet');
+                const userRole = cadetRole ? cadetRole : userRoles[0];
+
                 const fullName = member.displayName || member.user.username;
                 const parsed = parseUserBadgeAndName(fullName, userRole.badgePrefix);
 
