@@ -41,7 +41,8 @@ const ROLE_MAPPINGS = [
 // Helper function to extract badge prefix and clean name
 function parseUserBadgeAndName(displayName, fallbackPrefix) {
     const raw = (displayName || '').trim();
-    // Regex يدعم الأرقام مع مسافات (مثال: "300 Siraj" أو "C-2 Olise")
+    
+    // Regex مرن لالتقاط أي شارة في بداية الاسم مثل: "607 SAHRAWI", "629 | EL DAHS", "C-2 Olise"
     const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
 
     if (match) {
@@ -51,8 +52,9 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
         };
     }
 
+    // في حال عدم وجود رقم شارة في اسم الحساب، سيتم تعيين شارة افتراضية دون استبعاد العضو
     return {
-        badge: fallbackPrefix || '300',
+        badge: fallbackPrefix || 'N/A',
         name: raw
     };
 }
@@ -61,17 +63,18 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
 app.get('/api/roster', async (req, res) => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
+        // جلب جميع الأعضاء بالكامل من السيرفر
         const members = await guild.members.fetch({ force: true }); 
         const roster = [];
 
         members.forEach(member => {
             if (member.user.bot) return;
 
-            // العثور على كافة الأدوار المطابقة لدى العضو
+            // البحث عن أدوار العضو من الأعلى إلى الأدنى
             const matchedRoles = ROLE_MAPPINGS.filter(config => member.roles.cache.has(config.id));
 
             if (matchedRoles.length > 0) {
-                // اختيار أعلى رتبة مسجلة في المخطط
+                // نأخذ أعلى رتبة يمتلكها العضو
                 const config = matchedRoles[0];
                 const fullName = member.displayName || member.user.username;
                 const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
@@ -91,7 +94,7 @@ app.get('/api/roster', async (req, res) => {
             }
         });
 
-        console.log(`[ROSTER API] Total officers: ${roster.length} | Cadets count: ${roster.filter(r => r.category === 'Cadet').length}`);
+        console.log(`[ROSTER API] Total extracted members: ${roster.length} | Cadets count: ${roster.filter(r => r.category === 'Cadet').length}`);
         res.json(roster);
     } catch (error) {
         console.error('API Error:', error);
@@ -100,7 +103,7 @@ app.get('/api/roster', async (req, res) => {
 });
 
 // Bot Startup Handlers
-client.once('clientReady', (c) => {
+client.once('ready', (c) => {
     console.log(`[BOT ONLINE] Logged in as: ${c.user.tag}`);
 });
 
