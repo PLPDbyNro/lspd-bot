@@ -157,6 +157,7 @@
                             <option value="Officer II">Officer II</option>
                             <option value="Officer I">Officer I</option>
                             <option value="Solo Cadet">Solo Cadet</option>
+                            <option value="Cadet">Cadet</option>
                         </select>
                     </div>
                     <div>
@@ -468,7 +469,7 @@
                 rank: document.getElementById('form-rank').value,
                 category: document.getElementById('form-category').value,
                 responsibility: document.getElementById('form-responsibility').value || 'N/A',
-                insignia: 'chevrons2',
+                insignia: 'cadet',
                 status: document.getElementById('form-status').value,
                 strikes: parseInt(document.getElementById('form-strikes').value) || 0,
                 discord: document.getElementById('form-discord').value || 'N/A'
@@ -494,8 +495,8 @@
             document.getElementById('form-id').value = officer.id;
             document.getElementById('form-badge').value = parsed.badge;
             document.getElementById('form-name').value = parsed.name;
-            document.getElementById('form-rank').value = officer.rank || 'Officer I';
-            document.getElementById('form-category').value = officer.category || 'Patrol Units';
+            document.getElementById('form-rank').value = officer.rank || 'Cadet';
+            document.getElementById('form-category').value = officer.category || 'Cadet';
             document.getElementById('form-responsibility').value = officer.responsibility || '';
             document.getElementById('form-status').value = officer.status || 'Active';
             document.getElementById('form-strikes').value = officer.strikes || 0;
