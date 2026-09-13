@@ -62,21 +62,21 @@ app.get('/api/roster', async (req, res) => {
         members.forEach(member => {
             if (member.user.bot) return;
 
-            const matchedRoles = ROLE_MAPPINGS.filter(config => member.roles.cache.has(config.id));
+            // تحديد أعلى رتبة يمتلكها العضو حسب ترتيب القائمة
+            const userRole = ROLE_MAPPINGS.find(config => member.roles.cache.has(config.id));
 
-            if (matchedRoles.length > 0) {
-                const config = matchedRoles[0];
+            if (userRole) {
                 const fullName = member.displayName || member.user.username;
-                const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
+                const parsed = parseUserBadgeAndName(fullName, userRole.badgePrefix);
 
                 roster.push({
                     id: member.id,
                     badge: parsed.badge,
                     name: parsed.name,
-                    rank: config.rank,
-                    category: config.category,
+                    rank: userRole.rank,
+                    category: userRole.category,
                     responsibility: 'N/A',
-                    insignia: config.category === 'Cadet' ? 'cadet' : 'diamonds',
+                    insignia: userRole.category === 'Cadet' ? 'cadet' : 'diamonds',
                     status: 'Active',
                     strikes: 0,
                     discord: member.id
