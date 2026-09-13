@@ -5,10 +5,11 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+// Discord bot configuration with required intents
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMembers, // تأكد من تفعيل Server Members Intent في Discord Developer Portal
         GatewayIntentBits.GuildPresences
     ]
 });
@@ -37,16 +38,16 @@ const ROLE_MAPPINGS = [
     { id: "1367892038963429406", rank: "Cadet", category: "Cadet", badgePrefix: "300" }
 ];
 
-// Enhanced parser supporting all name formats (e.g. "300 Name", "C-2 Name", "Name | 300")
+// Helper function to extract badge prefix and clean name
 function parseUserBadgeAndName(displayName, fallbackPrefix) {
     const raw = (displayName || '').trim();
-    
-    // Match badges like "300 Name", "C-12 Name", "S-1 | Name"
-    const prefixMatch = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s*(.+)$/i);
-    if (prefixMatch && prefixMatch[2]) {
+    // Regex يدعم الأرقام مع مسافات (مثال: "300 Siraj" أو "C-2 Olise")
+    const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
+
+    if (match) {
         return {
-            badge: prefixMatch[1].trim(),
-            name: prefixMatch[2].trim()
+            badge: match[1].trim(),
+            name: match[2].trim()
         };
     }
 
@@ -56,38 +57,41 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
     };
 }
 
+// API Endpoint to fetch roster data
 app.get('/api/roster', async (req, res) => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        // Force fetch all members from gateway to bypass cache limit
-        const members = await guild.members.fetch({ time: 10000 }); 
+        const members = await guild.members.fetch({ force: true }); 
         const roster = [];
 
         members.forEach(member => {
             if (member.user.bot) return;
 
-            for (const config of ROLE_MAPPINGS) {
-                if (member.roles.cache.has(config.id)) {
-                    const fullName = member.displayName || member.user.username;
-                    const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
+            // العثور على كافة الأدوار المطابقة لدى العضو
+            const matchedRoles = ROLE_MAPPINGS.filter(config => member.roles.cache.has(config.id));
 
-                    roster.push({
-                        id: member.id,
-                        badge: parsed.badge,
-                        name: parsed.name,
-                        rank: config.rank,
-                        category: config.category,
-                        responsibility: 'N/A',
-                        insignia: config.category === 'Cadet' ? 'cadet' : 'diamonds',
-                        status: 'Active',
-                        strikes: 0,
-                        discord: member.id
-                    });
-                    break;
-                }
+            if (matchedRoles.length > 0) {
+                // اختيار أعلى رتبة مسجلة في المخطط
+                const config = matchedRoles[0];
+                const fullName = member.displayName || member.user.username;
+                const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
+
+                roster.push({
+                    id: member.id,
+                    badge: parsed.badge,
+                    name: parsed.name,
+                    rank: config.rank,
+                    category: config.category,
+                    responsibility: 'N/A',
+                    insignia: config.category === 'Cadet' ? 'cadet' : 'diamonds',
+                    status: 'Active',
+                    strikes: 0,
+                    discord: member.id
+                });
             }
         });
 
+        console.log(`[ROSTER API] Total officers: ${roster.length} | Cadets count: ${roster.filter(r => r.category === 'Cadet').length}`);
         res.json(roster);
     } catch (error) {
         console.error('API Error:', error);
@@ -95,6 +99,7 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
+// Bot Startup Handlers
 client.once('clientReady', (c) => {
     console.log(`[BOT ONLINE] Logged in as: ${c.user.tag}`);
 });
