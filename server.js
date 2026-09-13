@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-// إعدادات بوت الديسكورد مع تفعيل Intents الخاصة بالأعضاء
+// Discord bot configuration with required intents
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -14,11 +14,11 @@ const client = new Client({
     ]
 });
 
-// توكن البوت وأيدي السيرفر
+// Bot token and Guild ID
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
 const GUILD_ID = '1367860164740518010';
 
-// تعيين الرتب والأقسام
+// Roles and Categories Mapping
 const ROLE_MAPPINGS = {
     "1367887614971215972": { rank: "Police Chief", category: "Police Administration", badgePrefix: "A-" },
     "1442180653901676666": { rank: "Vice Chief", category: "Police Administration", badgePrefix: "A-" },
@@ -35,14 +35,33 @@ const ROLE_MAPPINGS = {
     "1367891239537606736": { rank: "Officer III", category: "Patrol Units", badgePrefix: "U-" },
     "1367891241399750701": { rank: "Officer II", category: "Patrol Units", badgePrefix: "U-" },
     "1367892003505049660": { rank: "Officer I", category: "Patrol Units", badgePrefix: "U-" },
-    "1367892036249976863": { rank: "Solo Cadet", category: "Cadet", badgePrefix: "300" }
+    "1367892036249976863": { rank: "Solo Cadet", category: "Cadet", badgePrefix: "300" },
+    "1367892038963429406": { rank: "Cadet", category: "Cadet", badgePrefix: "300" }
 };
 
-// رابط API لربط الروستر بالموقع
+// Helper function to extract badge prefix and clean name
+function parseUserBadgeAndName(displayName, fallbackPrefix) {
+    const raw = (displayName || '').trim();
+    // Matches patterns like "652 Siraj", "C-2 Olise", "308-John", "P-10 | Mark"
+    const match = raw.match(/^([A-Za-z0-9]+-[0-9]+|[A-Za-z0-9]+-[A-Za-z0-9]+|[0-9]+)\s*[\|-]?\s*(.+)$/i);
+
+    if (match) {
+        return {
+            badge: match[1].trim(),
+            name: match[2].trim()
+        };
+    }
+
+    return {
+        badge: fallbackPrefix || 'N/A',
+        name: raw
+    };
+}
+
+// API Endpoint to fetch roster data
 app.get('/api/roster', async (req, res) => {
     try {
         const guild = await client.guilds.fetch(GUILD_ID);
-        // جلب كافّة الأعضاء مجدداً لضمان عدم الاعتماد على كاش قديم
         const members = await guild.members.fetch({ force: true }); 
         const roster = [];
 
@@ -51,10 +70,13 @@ app.get('/api/roster', async (req, res) => {
 
             for (const [roleId, config] of Object.entries(ROLE_MAPPINGS)) {
                 if (member.roles.cache.has(roleId)) {
+                    const fullName = member.displayName || member.user.username;
+                    const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
+
                     roster.push({
                         id: member.id,
-                        badge: config.badgePrefix,
-                        name: member.displayName || member.user.username,
+                        badge: parsed.badge,
+                        name: parsed.name,
                         rank: config.rank,
                         category: config.category,
                         responsibility: 'N/A',
@@ -74,7 +96,7 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
-// تحسين حدث التشغيل وتفادي تحذيرات Deprecation
+// Bot Startup Handlers
 client.once('clientReady', (c) => {
     console.log(`[BOT ONLINE] Logged in as: ${c.user.tag}`);
 });
