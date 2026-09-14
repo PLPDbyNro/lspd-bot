@@ -228,26 +228,6 @@
             "Cadet": 17
         };
 
-        const rankInsigniaMap = {
-            "Police Chief": "5star",
-            "Vice Chief": "4star",
-            "Assistant Chief": "3star",
-            "Deputy Chief": "1star",
-            "Major": "bar1gold",
-            "Captain": "bars2",
-            "Lieutenant II": "bar1silver",
-            "Lieutenant I": "bar1silver",
-            "Staff Sergeant": "chevrons4",
-            "First Sergeant": "chevrons3",
-            "Sergeant": "chevrons2",
-            "Senior Officer": "diamonds",
-            "Officer III": "diamonds",
-            "Officer II": "diamonds",
-            "Officer I": "diamonds",
-            "Solo Cadet": "cadet",
-            "Cadet": "cadet"
-        };
-
         const rosterContainer = document.getElementById('roster-container');
         const adminToggleBtn = document.getElementById('admin-toggle-btn');
         const addMemberBtn = document.getElementById('add-member-btn');
@@ -288,24 +268,6 @@
                 }
             } catch (error) {
                 console.error('API Fetch Error:', error);
-            }
-        }
-
-        function renderInsignia(type) {
-            switch(type) {
-                case '5star': return '<span class="text-amber-400 font-bold">★★★★★</span>';
-                case '4star': return '<span class="text-amber-400 font-bold">★★★★</span>';
-                case '3star': return '<span class="text-amber-400 font-bold">★★★</span>';
-                case '1star': return '<span class="text-amber-400 font-bold">★</span>';
-                case 'bars2': return '<span class="text-slate-300 font-bold">❚❚</span>';
-                case 'bar1gold': return '<span class="text-amber-500 font-bold">❚</span>';
-                case 'bar1silver': return '<span class="text-slate-300 font-bold">❚</span>';
-                case 'chevrons4': return '<span class="text-slate-300 font-bold">⤊⤊</span>';
-                case 'chevrons3': return '<span class="text-slate-300 font-bold">⤊^</span>';
-                case 'chevrons2': return '<span class="text-slate-300 font-bold">⤊</span>';
-                case 'diamonds': return '<span class="text-slate-400">❖</span>';
-                case 'cadet': return '<span class="text-slate-500">◇</span>';
-                default: return '<span class="text-slate-500">◇</span>';
             }
         }
 
@@ -391,63 +353,59 @@
                 });
 
                 const section = document.createElement('div');
-                section.className = 'bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg';
+                section.className = 'bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-2xl max-w-md mx-auto my-4';
 
-                let rowsHtml = catOfficers.map(o => {
+                let listHtml = catOfficers.map((o, idx) => {
                     const parsed = processOfficerBadgeAndName(o.name, o.badge);
                     const isRedBadge = parsed.badge.startsWith('P-') || parsed.badge.startsWith('A-') || parsed.badge.startsWith('T-');
-                    const insignia = o.insignia || rankInsigniaMap[o.rank] || 'cadet';
+                    const isYou = o.discord === '449367085382893568' || parsed.name.toLowerCase().includes('zerbou3i');
                     
+                    let statusClass = 'status-unk';
+                    let statusText = o.status === 'Suspended' ? 'OFF' : 'UNK';
+                    let statusIcon = 'fa-car';
+                    if (o.status === 'Suspended' || o.status === 'LOA') {
+                        statusClass = 'status-off';
+                        statusIcon = 'fa-user';
+                    }
+
                     return `
-                    <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition">
-                        <td class="px-4 py-3 text-xs font-mono font-bold ${isRedBadge ? 'text-red-400' : 'text-blue-400'}">${parsed.badge}</td>
-                        <td class="px-4 py-3 text-sm font-semibold text-slate-100">${parsed.name}</td>
-                        <td class="px-4 py-3 text-xs font-medium text-amber-400/90">${o.rank || 'Cadet'}</td>
-                        <td class="px-4 py-3 text-xs text-slate-400">${o.responsibility || 'N/A'}</td>
-                        <td class="px-4 py-3 text-xs text-center">${renderInsignia(insignia)}</td>
-                        <td class="px-4 py-3 text-xs text-center">
-                            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${
-                                o.status === 'LOA' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 
-                                o.status === 'Suspended' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
-                                'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                            }">${o.status || 'Active'}</span>
-                        </td>
-                        <td class="px-4 py-3 text-xs text-center font-mono ${o.strikes > 0 ? 'text-red-400 font-bold' : 'text-slate-500'}">${o.strikes || 0}</td>
-                        <td class="px-4 py-3 text-xs font-mono text-slate-400">${o.discord || o.id}</td>
-                        ${isAdmin ? `
-                            <td class="px-4 py-3 text-xs text-right space-x-2">
-                                <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300"><i class="fa-solid fa-pen"></i></button>
-                                <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        ` : ''}
-                    </tr>
-                `}).join('');
+                    <div class="flex items-center justify-between px-5 py-3 border-b border-[#21262d] hover:bg-[#1f242c] transition">
+                        <div class="flex items-center gap-3.5">
+                            <span class="text-xs font-bold font-mono min-w-[36px]" style="color: ${isRedBadge ? '#f85149' : '#58a6ff'};">${parsed.badge}</span>
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-sm font-semibold text-[#f0f6fc]">${parsed.name}</span>
+                                    ${isYou ? '<span class="text-[9px] font-bold bg-[#da3633] text-white px-1 py-0.5 rounded tracking-wider">YOU</span>' : ''}
+                                </div>
+                                <span class="text-[11px] text-[#8b949e] font-medium">${o.rank || 'Cadet'}</span>
+                                <div class="flex items-center gap-1 text-[10px] text-[#6e7681] mt-0.5">
+                                    <i class="fa-solid fa-location-dot text-[#3fb950] text-[9px]"></i> Mission Row
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1.5 text-right">
+                                <i class="fa-solid ${statusIcon} text-[#8b949e] text-xs"></i>
+                                <span class="text-[11px] font-semibold uppercase tracking-wider ${statusClass === 'status-off' ? 'text-[#f85149]' : 'text-[#8b949e]'}">${statusText}</span>
+                            </div>
+                            ${isAdmin ? `
+                                <div class="flex items-center gap-2 ml-2">
+                                    <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300 text-xs"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    `;
+                }).join('');
 
                 section.innerHTML = `
-                    <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
-                        <h2 class="text-sm font-bold tracking-wide uppercase text-slate-300 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full ${cat === 'Police Administration' ? 'bg-amber-500' : 'bg-blue-500'}"></span>
-                            ${cat}
-                        </h2>
-                        <span class="text-xs font-mono text-slate-500">${catOfficers.length} Members</span>
+                    <div class="px-5 py-3.5 bg-[#21262d] border-b border-[#30363d] flex justify-between items-center">
+                        <span class="text-xs font-bold text-[#f0f6fc] uppercase tracking-wider">${cat}</span>
+                        <span class="text-[11px] font-semibold text-[#2ea043] bg-[#2ea043]/15 px-2 py-0.5 rounded-full">${catOfficers.length} Active</span>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900/50 text-[11px] font-semibold text-slate-500 uppercase border-b border-slate-800">
-                                    <th class="px-4 py-2">Badge</th>
-                                    <th class="px-4 py-2">Name</th>
-                                    <th class="px-4 py-2">Rank</th>
-                                    <th class="px-4 py-2">Responsibility</th>
-                                    <th class="px-4 py-2 text-center">Insignia</th>
-                                    <th class="px-4 py-2 text-center">Status</th>
-                                    <th class="px-4 py-2 text-center">Strikes</th>
-                                    <th class="px-4 py-2">Discord ID</th>
-                                    ${isAdmin ? '<th class="px-4 py-2 text-right">Actions</th>' : ''}
-                                </tr>
-                            </thead>
-                            <tbody>${rowsHtml}</tbody>
-                        </table>
+                    <div class="flex flex-col">
+                        ${listHtml}
                     </div>
                 `;
                 rosterContainer.appendChild(section);
@@ -509,7 +467,6 @@
                 rank: rankVal,
                 category: document.getElementById('form-category').value,
                 responsibility: document.getElementById('form-responsibility').value || 'N/A',
-                insignia: rankInsigniaMap[rankVal] || 'cadet',
                 status: document.getElementById('form-status').value,
                 strikes: parseInt(document.getElementById('form-strikes').value) || 0,
                 discord: document.getElementById('form-discord').value || 'N/A'
@@ -572,57 +529,34 @@
         };
 
         window.deleteOfficer = async function(id) {
-            if (!confirm("Are you sure you want to delete this officer record?")) return;
-
-            try {
-                const response = await fetch(`${API_URL}/${id}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    await fetchLiveRoster();
-                } else {
+            if (confirm('Are you sure you want to delete this officer record?')) {
+                try {
+                    const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        await fetchLiveRoster();
+                    } else {
+                        officers = officers.filter(o => String(o.id) !== String(id));
+                        renderRoster();
+                    }
+                } catch (err) {
                     officers = officers.filter(o => String(o.id) !== String(id));
                     renderRoster();
                 }
-            } catch (err) {
-                console.warn('Backend delete failed, performing local UI update', err);
-                officers = officers.filter(o => String(o.id) !== String(id));
-                renderRoster();
             }
         };
 
         document.getElementById('export-csv').addEventListener('click', () => {
-            if (officers.length === 0) {
-                alert("No officer data available to export.");
-                return;
-            }
-
-            const headers = ["Badge", "Name", "Rank", "Category", "Responsibility", "Status", "Strikes", "Discord ID"];
-            const csvRows = [headers.join(",")];
-
+            let csv = 'Badge,Name,Rank,Category,Responsibility,Status,Strikes,DiscordID\n';
             officers.forEach(o => {
                 const parsed = processOfficerBadgeAndName(o.name, o.badge);
-                const row = [
-                    `"${parsed.badge}"`,
-                    `"${parsed.name}"`,
-                    `"${o.rank || 'Cadet'}"`,
-                    `"${o.category || 'Cadet'}"`,
-                    `"${o.responsibility || 'N/A'}"`,
-                    `"${o.status || 'Active'}"`,
-                    `"${o.strikes || 0}"`,
-                    `"${o.discord || o.id}"`
-                ];
-                csvRows.push(row.join(","));
+                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
             });
-
-            const blob = new Blob([csvRows.join("\n")], { type: 'text/csv' });
+            const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
-            a.setAttribute('download', `PLPD_Roster_${new Date().toISOString().slice(0, 10)}.csv`);
+            a.setAttribute('download', 'PLPD_Personnel_Roster.csv');
             a.click();
-            window.URL.revokeObjectURL(url);
         });
 
         fetchLiveRoster();
