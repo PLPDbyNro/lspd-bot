@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Prime Legends Police Department - Personnel Roster</title>
+    <title>Police Department - Personnel Roster</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f1115; }
-        ::-webkit-scrollbar-thumb { background: #262c36; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3a424f; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="bg-[#0b0e14] text-[#d1d5db] font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
 
-    <header class="bg-[#12161d]/90 backdrop-blur border-b border-[#212630] sticky top-0 z-50 shadow-md">
+    <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <div class="relative group">
-                    <img src="logo.png" alt="Prime Legends Logo" class="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/56?text=PLPD'">
+                    <img src="logo.png" alt="Department Logo" class="h-14 w-auto object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/56?text=PD'">
                 </div>
                 <div>
                     <h1 class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-amber-300">
-                        PRIME LEGENDS POLICE DEPARTMENT
+                        POLICE DEPARTMENT ROSTER
                     </h1>
                     <span class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -34,24 +34,24 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <div class="hidden md:flex items-center gap-6 bg-[#0f1115] px-4 py-2 rounded-xl border border-[#212630] text-xs shadow-inner">
+                <div class="hidden md:flex items-center gap-6 bg-slate-950/80 px-4 py-2 rounded-xl border border-slate-800 text-xs shadow-inner">
                     <div>
                         <span class="text-slate-500 uppercase block text-[10px] font-semibold">Total Personnel</span>
                         <span id="stat-total" class="font-bold text-blue-400 text-sm">0</span>
                     </div>
-                    <div class="w-px h-6 bg-[#212630]"></div>
+                    <div class="w-px h-6 bg-slate-800"></div>
                     <div>
                         <span class="text-slate-500 uppercase block text-[10px] font-semibold">Active Duty</span>
                         <span id="stat-active" class="font-bold text-emerald-400 text-sm">0</span>
                     </div>
-                    <div class="w-px h-6 bg-[#212630]"></div>
+                    <div class="w-px h-6 bg-slate-800"></div>
                     <div>
-                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">Command Staff</span>
+                        <span class="text-slate-500 uppercase block text-[10px] font-semibold">Legal Forces</span>
                         <span id="stat-command" class="font-bold text-amber-400 text-sm">0</span>
                     </div>
                 </div>
 
-                <button id="admin-toggle-btn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-[#1a202c] hover:bg-[#2d3748] text-slate-200 border border-[#2d3748] transition flex items-center gap-2 shadow-md">
+                <button id="admin-toggle-btn" class="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2 shadow-md">
                     <i class="fa-solid fa-lock text-amber-400"></i>
                     <span>Admin Mode</span>
                 </button>
@@ -61,22 +61,22 @@
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-        <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center bg-[#12161d] p-4 rounded-xl border border-[#212630] shadow-xl">
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-xl">
             <div class="flex flex-1 flex-col sm:flex-row gap-3">
                 <div class="relative flex-1">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-                    <input type="text" id="search-input" placeholder="Search officer, badge #, rank, responsibility, or Discord ID..." class="w-full bg-[#0f1115] border border-[#212630] rounded-lg pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
+                    <input type="text" id="search-input" placeholder="Search officer, badge #, rank, or Discord ID..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
                 </div>
-                <select id="rank-filter" class="bg-[#0f1115] border border-[#212630] rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
+                <select id="rank-filter" class="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
                     <option value="ALL">All Categories</option>
+                    <option value="Legal Forces">Legal Forces</option>
+                    <option value="Police Upper Administration">Police Upper Administration</option>
                     <option value="Police Administration">Police Administration</option>
-                    <option value="Upper Administration">Upper Administration</option>
-                    <option value="High Command">High Command</option>
                     <option value="Supervisors">Supervisors</option>
                     <option value="Patrol Units">Patrol Units</option>
-                    <option value="Cadet">Cadet</option>
+                    <option value="Cadets">Cadets</option>
                 </select>
-                <select id="status-filter" class="bg-[#0f1115] border border-[#212630] rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
+                <select id="status-filter" class="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
                     <option value="ALL">All Statuses</option>
                     <option value="Active">Active</option>
                     <option value="LOA">LOA</option>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="export-csv" class="px-3.5 py-2 bg-[#0f1115] hover:bg-[#1a202c] border border-[#212630] rounded-lg text-xs font-semibold text-slate-300 transition flex items-center gap-2">
+                <button id="export-csv" class="px-3.5 py-2 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-semibold text-slate-300 transition flex items-center gap-2">
                     <i class="fa-solid fa-file-csv text-emerald-400"></i>
                     <span>Export CSV</span>
                 </button>
@@ -96,26 +96,20 @@
             </div>
         </div>
 
-        <div class="w-full bg-[#13161c] border border-[#222834] rounded-2xl shadow-2xl overflow-hidden my-6">
-            <div class="px-6 py-4 border-b border-[#222834] flex items-center justify-between bg-[#171b23]">
-                <span class="text-xs font-bold text-slate-300 tracking-wider uppercase">Personnel Roster Directory</span>
-                <span id="active-group-indicator" class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Live View</span>
-            </div>
-            <div id="roster-container" class="divide-y divide-[#1c222d]"></div>
-        </div>
+        <div id="roster-container" class="space-y-6"></div>
 
     </main>
 
-    <footer class="bg-[#12161d] border-t border-[#212630] py-4 mt-auto">
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <span>Prime Legends Police Department &bull; Automated Roster System</span>
+            <span>Police Department &bull; Automated Roster System</span>
             <span class="text-slate-600 font-mono" id="view-mode-label">Public View Mode</span>
         </div>
     </footer>
 
-    <div id="officer-modal" class="fixed inset-0 bg-[#0b0e14]/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-[#13161c] border border-[#222834] rounded-xl w-full max-w-lg overflow-hidden shadow-2xl">
-            <div class="px-6 py-4 border-b border-[#222834] flex justify-between items-center bg-[#0f1115]">
+    <div id="officer-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-lg overflow-hidden shadow-2xl">
+            <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
                 <h3 id="modal-title" class="font-bold text-slate-100 flex items-center gap-2">
                     <i class="fa-solid fa-user-plus text-blue-400"></i>
                     <span>Add New Officer</span>
@@ -129,65 +123,55 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Badge NO</label>
-                        <input type="text" id="form-badge" placeholder="e.g. C-2, M-0" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <input type="text" id="form-badge" placeholder="e.g. GS-, PC-" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Officer Name</label>
-                        <input type="text" id="form-name" required placeholder="e.g. Olise" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <input type="text" id="form-name" required placeholder="e.g. Officer Name" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Rank Title</label>
-                        <select id="form-rank" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <select id="form-rank" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                            <option value="General Supervisor">General Supervisor</option>
+                            <option value="Legal Force Supervisor">Legal Force Supervisor</option>
                             <option value="Police Chief">Police Chief</option>
                             <option value="Vice Chief">Vice Chief</option>
                             <option value="Assistant Chief">Assistant Chief</option>
-                            <option value="Deputy Chief">Deputy Chief</option>
-                            <option value="Major">Major</option>
+                            <option value="Deputy Chief Police">Deputy Chief Police</option>
+                            <option value="Commander">Commander</option>
                             <option value="Captain">Captain</option>
-                            <option value="Lieutenant II">Lieutenant II</option>
-                            <option value="Lieutenant I">Lieutenant I</option>
+                            <option value="Lieutenant">Lieutenant</option>
                             <option value="Staff Sergeant">Staff Sergeant</option>
-                            <option value="First Sergeant">First Sergeant</option>
                             <option value="Sergeant">Sergeant</option>
                             <option value="Senior Officer">Senior Officer</option>
-                            <option value="Officer III">Officer III</option>
-                            <option value="Officer II">Officer II</option>
-                            <option value="Officer I">Officer I</option>
-                            <option value="Solo Cadet">Solo Cadet</option>
-                            <option value="Cadet">Cadet</option>
+                            <option value="Officer">Officer</option>
+                            <option value="Academy">Academy</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Category Group</label>
-                        <select id="form-category" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <select id="form-category" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                            <option value="Legal Forces">Legal Forces</option>
+                            <option value="Police Upper Administration">Police Upper Administration</option>
                             <option value="Police Administration">Police Administration</option>
-                            <option value="Upper Administration">Upper Administration</option>
-                            <option value="High Command">High Command</option>
                             <option value="Supervisors">Supervisors</option>
                             <option value="Patrol Units">Patrol Units</option>
-                            <option value="Cadet">Cadet</option>
+                            <option value="Cadets">Cadets</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Responsibility</label>
-                        <select id="form-responsibility" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
-                            <option value="N/A">N/A</option>
-                            <option value="Air Unit Leader">Air Unit Leader</option>
-                            <option value="High Command">High Command</option>
-                            <option value="Motorcycle Unit Leader">Motorcycle Unit Leader</option>
-                            <option value="Detective">Detective</option>
-                            <option value="FTO">FTO</option>
-                        </select>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Responsibility / Role</label>
+                        <input type="text" id="form-responsibility" placeholder="e.g. FTO, Air Unit, N/A" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Duty Status</label>
-                        <select id="form-status" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                        <select id="form-status" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
                             <option value="Active">Active</option>
                             <option value="LOA">LOA (On Leave)</option>
                             <option value="Suspended">Suspended</option>
@@ -195,13 +179,19 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Discord ID</label>
-                    <input type="text" id="form-discord" placeholder="18-digit ID" class="w-full bg-[#0f1115] border border-[#222834] rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Strikes Count</label>
+                        <input type="number" id="form-strikes" min="0" max="3" value="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Discord ID</label>
+                        <input type="text" id="form-discord" placeholder="18-digit ID" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:border-blue-500 outline-none">
+                    </div>
                 </div>
 
-                <div class="pt-4 border-t border-[#222834] flex justify-end gap-3">
-                    <button type="button" id="cancel-modal" class="px-4 py-2 bg-[#1a202c] hover:bg-[#2d3748] text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
+                <div class="pt-4 border-t border-slate-800 flex justify-end gap-3">
+                    <button type="button" id="cancel-modal" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
                     <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-blue-600/20">Save Officer</button>
                 </div>
             </form>
@@ -209,30 +199,44 @@
     </div>
 
     <script>
-        const API_URL = 'https://lspd-bot-production-1daf.up.railway.app/api/roster';
+        const API_URL = 'https://lspd-bot-production-1daf.up.railway.app/api/roster'; // Update if your backend URL changes
         const ADMIN_PASSWORD = "1444";
 
         let officers = [];
         let isAdmin = false;
 
         const rankOrder = {
-            "Police Chief": 1,
-            "Vice Chief": 2,
-            "Assistant Chief": 3,
-            "Deputy Chief": 4,
-            "Major": 5,
-            "Captain": 6,
-            "Lieutenant II": 7,
-            "Lieutenant I": 8,
-            "Staff Sergeant": 9,
-            "First Sergeant": 10,
+            "General Supervisor": 1,
+            "Legal Force Supervisor": 2,
+            "Police Chief": 3,
+            "Vice Chief": 4,
+            "Assistant Chief": 5,
+            "Deputy Chief Police": 6,
+            "Commander": 7,
+            "Captain": 8,
+            "Lieutenant": 9,
+            "Staff Sergeant": 10,
             "Sergeant": 11,
             "Senior Officer": 12,
-            "Officer III": 13,
-            "Officer II": 14,
-            "Officer I": 15,
-            "Solo Cadet": 16,
-            "Cadet": 17
+            "Officer": 13,
+            "Academy": 14
+        };
+
+        const rankInsigniaMap = {
+            "General Supervisor": "5star",
+            "Legal Force Supervisor": "4star",
+            "Police Chief": "3star",
+            "Vice Chief": "1star",
+            "Assistant Chief": "bar1gold",
+            "Deputy Chief Police": "bars2",
+            "Commander": "bar1silver",
+            "Captain": "bar1silver",
+            "Lieutenant": "chevrons4",
+            "Staff Sergeant": "chevrons3",
+            "Sergeant": "chevrons2",
+            "Senior Officer": "diamonds",
+            "Officer": "diamonds",
+            "Academy": "cadet"
         };
 
         const rosterContainer = document.getElementById('roster-container');
@@ -278,6 +282,24 @@
             }
         }
 
+        function renderInsignia(type) {
+            switch(type) {
+                case '5star': return '<span class="text-amber-400 font-bold">★★★★★</span>';
+                case '4star': return '<span class="text-amber-400 font-bold">★★★★</span>';
+                case '3star': return '<span class="text-amber-400 font-bold">★★★</span>';
+                case '1star': return '<span class="text-amber-400 font-bold">★</span>';
+                case 'bars2': return '<span class="text-slate-300 font-bold">❚❚</span>';
+                case 'bar1gold': return '<span class="text-amber-500 font-bold">❚</span>';
+                case 'bar1silver': return '<span class="text-slate-300 font-bold">❚</span>';
+                case 'chevrons4': return '<span class="text-slate-300 font-bold">⤊⤊</span>';
+                case 'chevrons3': return '<span class="text-slate-300 font-bold">⤊^</span>';
+                case 'chevrons2': return '<span class="text-slate-300 font-bold">⤊</span>';
+                case 'diamonds': return '<span class="text-slate-400">❖</span>';
+                case 'cadet': return '<span class="text-slate-500">◇</span>';
+                default: return '<span class="text-slate-500">◇</span>';
+            }
+        }
+
         function getRankWeight(rankName) {
             if (!rankName) return 99;
             for (let rank in rankOrder) {
@@ -307,8 +329,8 @@
                                       resp.includes(query) ||
                                       discord.includes(query);
 
-                const isCadet = o.category === 'Cadet' || o.rank === 'Cadet' || o.rank === 'Solo Cadet';
-                const matchesCat = filterCat === 'ALL' || (filterCat === 'Cadet' ? isCadet : o.category === filterCat);
+                const isCadet = o.category === 'Cadets' || o.rank === 'Academy';
+                const matchesCat = filterCat === 'ALL' || (filterCat === 'Cadets' ? isCadet : o.category === filterCat);
                 const matchesStat = filterStat === 'ALL' || (o.status || 'Active') === filterStat;
 
                 return matchesSearch && matchesCat && matchesStat;
@@ -316,23 +338,23 @@
 
             document.getElementById('stat-total').innerText = officers.length;
             document.getElementById('stat-active').innerText = officers.filter(o => o.status === 'Active' || !o.status).length;
-            document.getElementById('stat-command').innerText = officers.filter(o => o.category === 'Police Administration' || o.category === 'Upper Administration' || o.category === 'High Command').length;
+            document.getElementById('stat-command').innerText = officers.filter(o => o.category === 'Legal Forces').length;
 
             const categories = [
+                'Legal Forces', 
+                'Police Upper Administration', 
                 'Police Administration', 
-                'Upper Administration', 
-                'High Command', 
                 'Supervisors', 
                 'Patrol Units', 
-                'Cadet'
+                'Cadets'
             ];
             rosterContainer.innerHTML = '';
 
             if (filtered.length === 0) {
                 rosterContainer.innerHTML = `
-                    <div class="text-center py-16 px-4">
+                    <div class="text-center py-12 bg-slate-900 rounded-xl border border-slate-800">
                         <i class="fa-solid fa-user-slash text-4xl text-slate-600 mb-3 block"></i>
-                        <p class="text-slate-400 text-sm">No officers found matching your criteria.</p>
+                        <p class="text-slate-400 font-medium text-sm">No officers found matching your criteria.</p>
                     </div>
                 `;
                 return;
@@ -340,8 +362,8 @@
 
             categories.forEach(cat => {
                 let catOfficers = filtered.filter(o => {
-                    if (cat === 'Cadet') {
-                        return o.category === 'Cadet' || o.rank === 'Cadet' || o.rank === 'Solo Cadet';
+                    if (cat === 'Cadets') {
+                        return o.category === 'Cadets' || o.rank === 'Academy';
                     }
                     return o.category === cat;
                 });
@@ -359,60 +381,67 @@
                     return badgeA.localeCompare(badgeB, undefined, { numeric: true, sensitivity: 'base' });
                 });
 
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'px-6 py-3 bg-[#171b23] text-xs font-bold text-slate-300 tracking-wider uppercase border-b border-[#222834] flex justify-between items-center';
-                headerDiv.innerHTML = `<span>${cat}</span><span class="text-[11px] text-slate-400 font-mono">${catOfficers.length} Personnel</span>`;
-                rosterContainer.appendChild(headerDiv);
+                const section = document.createElement('div');
+                section.className = 'bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg';
 
-                catOfficers.forEach(o => {
+                let rowsHtml = catOfficers.map(o => {
                     const parsed = processOfficerBadgeAndName(o.name, o.badge);
-                    const isRedBadge = parsed.badge.startsWith('P-') || parsed.badge.startsWith('A-') || parsed.badge.startsWith('T-');
+                    const isRedBadge = parsed.badge.startsWith('GS-') || parsed.badge.startsWith('LS-') || parsed.badge.startsWith('PC-') || parsed.badge.startsWith('VC-');
+                    const insignia = o.insignia || rankInsigniaMap[o.rank] || 'cadet';
                     
-                    let statusLabel = 'ACTIVE';
-                    let statusClass = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+                    return `
+                    <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition">
+                        <td class="px-4 py-3 text-xs font-mono font-bold ${isRedBadge ? 'text-red-400' : 'text-blue-400'}">${parsed.badge}</td>
+                        <td class="px-4 py-3 text-sm font-semibold text-slate-100">${parsed.name}</td>
+                        <td class="px-4 py-3 text-xs font-medium text-amber-400/90">${o.rank || 'Academy'}</td>
+                        <td class="px-4 py-3 text-xs text-slate-400">${o.responsibility || 'N/A'}</td>
+                        <td class="px-4 py-3 text-xs text-center">${renderInsignia(insignia)}</td>
+                        <td class="px-4 py-3 text-xs text-center">
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${
+                                o.status === 'LOA' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 
+                                o.status === 'Suspended' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
+                                'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                            }">${o.status || 'Active'}</span>
+                        </td>
+                        <td class="px-4 py-3 text-xs text-center font-mono ${o.strikes > 0 ? 'text-red-400 font-bold' : 'text-slate-500'}">${o.strikes || 0}</td>
+                        <td class="px-4 py-3 text-xs font-mono text-slate-400">${o.discord || o.id}</td>
+                        ${isAdmin ? `
+                            <td class="px-4 py-3 text-xs text-right space-x-2">
+                                <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        ` : ''}
+                    </tr>
+                `}).join('');
 
-                    if (o.status === 'Suspended') {
-                        statusLabel = 'SUSPENDED';
-                        statusClass = 'text-red-400 bg-red-500/10 border-red-500/20';
-                    } else if (o.status === 'LOA') {
-                        statusLabel = 'LOA';
-                        statusClass = 'text-amber-400 bg-amber-500/10 border-amber-500/20';
-                    }
-
-                    const discordId = o.discord && o.discord !== 'N/A' ? o.discord : 'Not Linked';
-                    const responsibility = o.responsibility && o.responsibility !== 'N/A' ? o.responsibility : null;
-
-                    const itemRow = document.createElement('div');
-                    itemRow.className = 'flex items-center justify-between px-6 py-4 hover:bg-[#181d27] transition border-b border-[#1c222d] last:border-b-0';
-                    itemRow.innerHTML = `
-                        <div class="flex items-center gap-6">
-                            <span class="text-xs font-bold font-mono tracking-tight min-w-[42px] px-2 py-1 rounded bg-[#0f1115] border border-[#222834] text-center" style="color: ${isRedBadge ? '#f87171' : '#38bdf8'};">${parsed.badge}</span>
-                            <div class="flex flex-col">
-                                <span class="text-sm font-bold text-slate-100 tracking-wide">${parsed.name}</span>
-                                <div class="flex items-center gap-2 mt-0.5">
-                                    <span class="text-xs text-slate-400 font-medium">${o.rank || 'Cadet'}</span>
-                                    ${responsibility ? `<span class="text-slate-600">&bull;</span><span class="text-[11px] text-blue-400 font-semibold bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">${responsibility}</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <div class="hidden sm:flex flex-col items-end font-mono">
-                                <span class="text-[10px] text-slate-500 uppercase font-semibold">Discord ID</span>
-                                <span class="text-xs text-slate-300">${discordId}</span>
-                            </div>
-                            <div class="px-2.5 py-1 rounded-full border text-[10px] font-bold tracking-wider ${statusClass}">
-                                ${statusLabel}
-                            </div>
-                            ${isAdmin ? `
-                                <div class="flex items-center gap-3 ml-2">
-                                    <button onclick="editOfficer('${o.id}')" class="text-blue-400 hover:text-blue-300 text-xs"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="deleteOfficer('${o.id}')" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>
-                                </div>
-                            ` : ''}
-                        </div>
-                    `;
-                    rosterContainer.appendChild(itemRow);
-                });
+                section.innerHTML = `
+                    <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
+                        <h2 class="text-sm font-bold tracking-wide uppercase text-slate-300 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full ${cat === 'Legal Forces' ? 'bg-amber-500' : 'bg-blue-500'}"></span>
+                            ${cat}
+                        </h2>
+                        <span class="text-xs font-mono text-slate-500">${catOfficers.length} Members</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900/50 text-[11px] font-semibold text-slate-500 uppercase border-b border-slate-800">
+                                    <th class="px-4 py-2">Badge</th>
+                                    <th class="px-4 py-2">Name</th>
+                                    <th class="px-4 py-2">Rank</th>
+                                    <th class="px-4 py-2">Responsibility</th>
+                                    <th class="px-4 py-2 text-center">Insignia</th>
+                                    <th class="px-4 py-2 text-center">Status</th>
+                                    <th class="px-4 py-2 text-center">Strikes</th>
+                                    <th class="px-4 py-2">Discord ID</th>
+                                    ${isAdmin ? '<th class="px-4 py-2 text-right">Actions</th>' : ''}
+                                </tr>
+                            </thead>
+                            <tbody>${rowsHtml}</tbody>
+                        </table>
+                    </div>
+                `;
+                rosterContainer.appendChild(section);
             });
         }
 
@@ -431,7 +460,7 @@
                 }
             } else {
                 isAdmin = false;
-                adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-[#1a202c] hover:bg-[#2d3748] text-slate-200 border border-[#2d3748] transition flex items-center gap-2';
+                adminToggleBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2';
                 adminToggleBtn.innerHTML = '<i class="fa-solid fa-lock text-amber-400"></i><span>Admin Mode</span>';
                 addMemberBtn.classList.add('hidden');
                 viewModeLabel.innerText = 'Public View Mode';
@@ -471,7 +500,9 @@
                 rank: rankVal,
                 category: document.getElementById('form-category').value,
                 responsibility: document.getElementById('form-responsibility').value || 'N/A',
+                insignia: rankInsigniaMap[rankVal] || 'cadet',
                 status: document.getElementById('form-status').value,
+                strikes: parseInt(document.getElementById('form-strikes').value) || 0,
                 discord: document.getElementById('form-discord').value || 'N/A'
             };
 
@@ -519,11 +550,12 @@
             document.getElementById('form-id').value = officer.id;
             document.getElementById('form-badge').value = parsed.badge;
             document.getElementById('form-name').value = parsed.name;
-            document.getElementById('form-rank').value = officer.rank || 'Cadet';
-            document.getElementById('form-category').value = officer.category || 'Cadet';
-            document.getElementById('form-responsibility').value = officer.responsibility || 'N/A';
+            document.getElementById('form-rank').value = officer.rank || 'Academy';
+            document.getElementById('form-category').value = officer.category || 'Cadets';
+            document.getElementById('form-responsibility').value = officer.responsibility || '';
             document.getElementById('form-status').value = officer.status || 'Active';
-            document.getElementById('form-discord').value = officer.discord || '';
+            document.getElementById('form-strikes').value = officer.strikes || 0;
+            document.getElementById('form-discord').value = officer.discord || officer.id;
 
             document.getElementById('modal-title').innerText = 'Edit Officer Record';
             modal.classList.remove('hidden');
@@ -548,16 +580,16 @@
         };
 
         document.getElementById('export-csv').addEventListener('click', () => {
-            let csv = 'Badge,Name,Rank,Category,Responsibility,Status,DiscordID\n';
+            let csv = 'Badge,Name,Rank,Category,Responsibility,Status,Strikes,DiscordID\n';
             officers.forEach(o => {
                 const parsed = processOfficerBadgeAndName(o.name, o.badge);
-                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}","${o.discord || 'N/A'}"\n`;
+                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
-            a.setAttribute('download', 'PLPD_Personnel_Roster.csv');
+            a.setAttribute('download', 'Personnel_Roster.csv');
             a.click();
         });
 
@@ -566,3 +598,10 @@
     </script>
 </body>
 </html>
+```[cite: 2]
+
+***
+
+<Elicitations message="What would you like to do next?">
+  <Elicitation label="Test live frontend" query="How can I preview and test this index.html file locally before hosting it?"/>
+</Elicitations>
