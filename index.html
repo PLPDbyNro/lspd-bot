@@ -10,6 +10,7 @@
         body {
             background-color: #050811;
             color: #f1f5f9;
+            font-family: system-ui, -apple-system, sans-serif;
         }
         .blue-glow {
             box-shadow: 0 0 25px rgba(37, 99, 235, 0.12);
@@ -23,6 +24,10 @@
             font-weight: 600;
             text-shadow: 0 0 10px rgba(226, 232, 240, 0.4), 0 0 20px rgba(148, 163, 184, 0.2);
         }
+        .blue-code {
+            color: #60a5fa;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="min-h-screen p-6">
@@ -34,13 +39,12 @@
                 Legal Forces Roster (Project 1)
             </button>
             <button onclick="switchTab('project2')" id="nav-project2" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
-                Project 2 (المشروع الجديد)
+                Radio Protocols & Codes (Project 2)
             </button>
         </nav>
 
         <!-- المحتوى الأول: مشروع الشرطة (Legal Forces) -->
         <div id="tab-police" class="tab-content">
-            <!-- Header -->
             <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-blue-900/40 pb-6">
                 <div class="flex items-center gap-5">
                     <img src="logo.png" alt="Logo" class="w-16 h-16 rounded-2xl object-cover border-2 border-blue-500/40 blue-glow shadow-xl" onerror="this.style.display='none'">
@@ -69,13 +73,121 @@
             <div id="roster-container" class="space-y-8"></div>
         </div>
 
-        <!-- المحتوى الثاني: المشروع الجديد (Project 2) -->
-        <div id="tab-project2" class="tab-content hidden">
-            <div class="bg-slate-900/80 border blue-border rounded-2xl p-8 blue-glow">
-                <h2 class="text-2xl font-bold text-blue-300 mb-4">المشروع الثاني (Project 2)</h2>
-                <p class="text-slate-400 mb-6">هذه صفحة فارغة جديدة كلياً ضمن نفس الرابط. يمكنك وضع أي محتوى تريده هنا (مثلاً لوحة تحكم أخرى، نظام إداري، أو إحصائيات).</p>
-                <div class="p-6 bg-slate-950/60 rounded-xl border border-blue-500/20 text-slate-300">
-                    <p>أخبرني ما هو المشروع الذي ترغب في وضعه هنا (مثلاً: نظام تسجيل عقوبات، نظام رواتب، أو صفحة إعلانات)، وسأقوم بكتابة الأكواد الخاصة به مباشرة داخل هذا القسم!</p>
+        <!-- المحتوى الثاني: مشروع الأكواد والبروتوكولات (Project 2 - Radio Protocols) بالألوان الزرقاء -->
+        <div id="tab-project2" class="tab-content hidden space-y-10">
+            <!-- Header section for Project 2 -->
+            <div class="mb-6">
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Radio Protocols</h2>
+                <p class="text-slate-400 text-sm">Radio calls, how they are spoken, and what they mean.</p>
+            </div>
+
+            <!-- جدول الأكواد المهمة -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">الأكواد المهمة</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">CALL</th>
+                                <th class="py-3 px-6 text-right">PRONUNCIATION</th>
+                                <th class="py-3 px-6 text-right">MEANING</th>
+                                <th class="py-3 px-6 text-right">EXAMPLE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-0</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن زيرو</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">الشرطي بحاجة لمسعف</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش 10-0 بتوجيه لموجة 5 ( يونت )</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-1</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن - ون</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">مطاردة مركبة</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش 10-1 مع ( مواصفات ( يونت ) المركبه )</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-2</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن - تو</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">غير صحيح</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-3</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن - ثري</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">استيقاف مروري</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش 10-3 مع ( مواصفات ( يونت ) المركبه والموقع )</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-4</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن - فور</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">علم</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">10-5</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">تن - فايڤ</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">سرقة سياره</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش امامي حالة 5-10 احتاج 23- ( يونت ) 10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- جدول الأكواد الجانبية -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">الأكواد الجانبية</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">CALL</th>
+                                <th class="py-3 px-6 text-right">PRONUNCIATION</th>
+                                <th class="py-3 px-6 text-right">MEANING</th>
+                                <th class="py-3 px-6 text-right">EXAMPLE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">Code 0</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">كود زيرو</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">عموم الوحدات توجه للحاله (استنفار امني)</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش لعموم الوحدات Code 0</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">Code 1</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">كود ون</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">بدون نور وصوت</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">Code 2</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">كود تو</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">مع نور ولكن بدون صوت السفقي</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">Code 3</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">كود ثري</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">مع نور و صوت السفقي</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right">Code 4</td>
+                                <td class="py-4 px-6 text-slate-300 text-right">كود فور</td>
+                                <td class="py-4 px-6 text-slate-100 text-right font-medium">المكان امن وخالي</td>
+                                <td class="py-4 px-6 text-slate-400 text-right">تو دسباتش لاست شوت فاير ( يونت ) Code 4</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -88,7 +200,6 @@
         let officers = [];
         let isAdmin = false;
 
-        // ترتيب الأقسام متضمناً Patrol Units قبل Cadets
         const CATEGORY_ORDER = [
             "Legal Forces",
             "Police Upper Administration",
@@ -98,7 +209,6 @@
             "Cadets"
         ];
 
-        // دالة التنقل بين الصفحات/التبويبات داخل نفس الرابط
         function switchTab(tabName) {
             const policeTab = document.getElementById('tab-police');
             const project2Tab = document.getElementById('tab-project2');
@@ -251,7 +361,7 @@
             });
         }
 
-        window.deleteOfficer = async function(id, event) {
+        window.deleteOfficer = async function(id) {
             if (!isAdmin) {
                 alert('يجب تفعيل وضع المشرف (Admin Mode) أولاً!');
                 return;
