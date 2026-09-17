@@ -18,20 +18,30 @@ const client = new Client({
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
 const GUILD_ID = '1548599612930007043';
 
+// الترتيب والمجموعات المحدثة حسب طلبك
 const ROLE_MAPPINGS = [
+    // Legal Forces
     { id: "1548745649275674855", rank: "General Supervisor", category: "Legal Forces", badgePrefix: "GS-" },
     { id: "1548745659593789543", rank: "Legal Force Supervisor", category: "Legal Forces", badgePrefix: "LS-" },
     { id: "1548745660520734720", rank: "Police Chief", category: "Legal Forces", badgePrefix: "PC-" },
     { id: "1548745661573365871", rank: "Vice Chief", category: "Legal Forces", badgePrefix: "VC-" },
+    
+    // Police Upper Administration
     { id: "1548745666577174658", rank: "Assistant Chief", category: "Police Upper Administration", badgePrefix: "AC-" },
     { id: "1548745668695429271", rank: "Deputy Chief Police", category: "Police Upper Administration", badgePrefix: "DC-" },
+    
+    // Police Administration
     { id: "1548745679814525041", rank: "Commander", category: "Police Administration", badgePrefix: "CM-" },
     { id: "1548745675154522142", rank: "Captain", category: "Police Administration", badgePrefix: "C-" },
     { id: "1548745685312995438", rank: "Lieutenant", category: "Police Administration", badgePrefix: "L-" },
+    
+    // Supervisors
     { id: "1548745686609305600", rank: "Staff Sergeant", category: "Supervisors", badgePrefix: "S-2" },
     { id: "1548745687532044428", rank: "Sergeant", category: "Supervisors", badgePrefix: "S-1" },
-    { id: "1548745688505131009", rank: "Senior Officer", category: "Patrol Units", badgePrefix: "U-" },
-    { id: "1548745690396491837", rank: "Officer", category: "Patrol Units", badgePrefix: "U-" },
+    
+    // Cadets (تحتوي على Senior Officer, Officer, Academy)
+    { id: "1548745688505131009", rank: "Senior Officer", category: "Cadets", badgePrefix: "U-" },
+    { id: "1548745690396491837", rank: "Officer", category: "Cadets", badgePrefix: "U-" },
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
 ];
 
@@ -82,7 +92,7 @@ app.get('/api/roster', async (req, res) => {
             }
         });
 
-        // ترتيب الأعضاء تلقائياً بناءً على تسلسل الرتب في ROLE_MAPPINGS
+        // ترتيب العناصر بناءً على المصفوفة المحدثة
         roster.sort((a, b) => {
             const indexA = ROLE_MAPPINGS.findIndex(r => r.rank === a.rank);
             const indexB = ROLE_MAPPINGS.findIndex(r => r.rank === b.rank);
