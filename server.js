@@ -42,15 +42,13 @@ function parseUserBadgeAndName(displayName, fallbackPrefix) {
     return { badge: fallbackPrefix || 'N/A', name: raw };
 }
 
-// Simple cache layer to prevent rate limits
 let cachedRoster = [];
 let lastFetchTime = 0;
-const CACHE_DURATION = 60 * 1000; // Cache for 1 minute
+const CACHE_DURATION = 60 * 1000;
 
 app.get('/api/roster', async (req, res) => {
     try {
         const now = Date.now();
-        // Return cached data if it's fresh
         if (cachedRoster.length > 0 && (now - lastFetchTime < CACHE_DURATION)) {
             return res.json(cachedRoster);
         }
@@ -90,7 +88,6 @@ app.get('/api/roster', async (req, res) => {
         res.json(roster);
     } catch (error) {
         console.error('API Error:', error);
-        // If rate limited, return the old cached roster instead of crashing
         if (cachedRoster.length > 0) {
             console.log('[ROSTER API] Serving stale cache due to rate limit/error.');
             return res.json(cachedRoster);
@@ -105,8 +102,3 @@ client.once('ready', (c) => {
 
 client.login(BOT_TOKEN);
 app.listen(3000, () => console.log('[SERVER ONLINE] Running on port 3000'));
-```[cite: 1]
-
-### Deployment Checklist
-1. **Redeploy:** Push or redeploy this updated `server.js` file to your hosting provider (like Railway) so the new Guild ID and cache take effect.
-2. **Check Interval:** In your `index.html`, keeping the auto-refresh at `10000` (10 seconds) is fine now because the backend will serve the cached data instantly without hitting Discord's rate limiters.
