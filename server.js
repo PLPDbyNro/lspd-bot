@@ -33,8 +33,11 @@ const ROLE_MAPPINGS = [
     { id: "1548745686609305600", rank: "Staff Sergeant", category: "Supervisors", badgePrefix: "S-2" },
     { id: "1548745687532044428", rank: "Sergeant", category: "Supervisors", badgePrefix: "S-1" },
     
-    { id: "1548745688505131009", rank: "Senior Officer", category: "Cadets", badgePrefix: "SO-" },
-    { id: "1548745690396491837", rank: "Officer", category: "Cadets", badgePrefix: "O-" },
+    // تم تعديل القسم هنا ليصبح Patrol Units بدلاً من Cadets
+    { id: "1548745688505131009", rank: "Senior Officer", category: "Patrol Units", badgePrefix: "SO-" },
+    { id: "1548745690396491837", rank: "Officer", category: "Patrol Units", badgePrefix: "O-" },
+    
+    // Academy وحدها في Cadets
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
 ];
 
@@ -65,8 +68,6 @@ app.get('/api/roster', async (req, res) => {
             const config = ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
             if (config) {
                 const raw = member.displayName || member.user.username;
-                
-                // استخراج البادج والاسم بدقة من اسم ديسكورد (مثال: [SO-300] MARK MILKOV)
                 const match = raw.match(/^\[?([A-Za-z0-9-]+)\]?\s*[\|-]?\s+(.+)$/);
                 
                 let badgeVal = match ? match[1].trim() : config.badgePrefix;
