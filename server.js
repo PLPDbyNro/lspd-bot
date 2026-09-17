@@ -82,6 +82,13 @@ app.get('/api/roster', async (req, res) => {
             }
         });
 
+        // ترتيب الأعضاء تلقائياً بناءً على تسلسل الرتب في ROLE_MAPPINGS
+        roster.sort((a, b) => {
+            const indexA = ROLE_MAPPINGS.findIndex(r => r.rank === a.rank);
+            const indexB = ROLE_MAPPINGS.findIndex(r => r.rank === b.rank);
+            return indexA - indexB;
+        });
+
         cachedRoster = roster;
         lastFetchTime = now;
         res.json(roster);
@@ -105,7 +112,7 @@ app.delete('/api/roster/:id', (req, res) => {
 });
 
 // Discord Bot Events
-client.once('ready', (c) => {
+client.once('clientReady', (c) => {
     console.log(`[Discord Bot] Logged in successfully as ${c.user.tag}`);
 });
 
