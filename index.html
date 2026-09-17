@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legends Legal Forces Department Roster</title>
+    <title>Multi-Project Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -17,7 +17,6 @@
         .blue-border {
             border-color: rgba(59, 130, 246, 0.2);
         }
-        /* تأثير التوهج الفضي لرتبة الـ Rank */
         .silver-glow-rank {
             color: #e2e8f0;
             font-size: 1.05rem;
@@ -28,40 +27,61 @@
 </head>
 <body class="min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-blue-900/40 pb-6">
-            <div class="flex items-center gap-5">
-                <!-- Logo مكبر ومنسق -->
-                <img src="logo.png" alt="Logo" class="w-16 h-16 rounded-2xl object-cover border-2 border-blue-500/40 blue-glow shadow-xl" onerror="this.style.display='none'">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
-                        The Legends Legal Forces Department Roster
-                    </h1>
-                    <p id="connection-status" class="text-xs text-blue-400 mt-1">Connecting to server...</p>
+        
+        <!-- شريط التنقل العلوي بين المشاريع (Top Navigation Bar) -->
+        <nav class="flex justify-center md:justify-start gap-4 mb-8 border-b border-blue-900/40 pb-4">
+            <button onclick="switchTab('police')" id="nav-police" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20">
+                Legal Forces Roster (Project 1)
+            </button>
+            <button onclick="switchTab('project2')" id="nav-project2" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
+                Project 2 (المشروع الجديد)
+            </button>
+        </nav>
+
+        <!-- المحتوى الأول: مشروع الشرطة (Legal Forces) -->
+        <div id="tab-police" class="tab-content">
+            <!-- Header -->
+            <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-blue-900/40 pb-6">
+                <div class="flex items-center gap-5">
+                    <img src="logo.png" alt="Logo" class="w-16 h-16 rounded-2xl object-cover border-2 border-blue-500/40 blue-glow shadow-xl" onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
+                            The Legends Legal Forces Department Roster
+                        </h1>
+                        <p id="connection-status" class="text-xs text-blue-400 mt-1">Connecting to server...</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 md:mt-0 flex gap-3">
+                    <button onclick="toggleAdminMode()" id="admin-btn" class="bg-slate-800 hover:bg-slate-700 text-blue-400 border border-blue-500/30 px-4 py-2.5 rounded-xl font-medium transition cursor-pointer flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        <span id="admin-btn-text">Admin Mode (Locked)</span>
+                    </button>
+
+                    <button onclick="fetchLiveRoster()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-medium transition shadow-lg shadow-blue-600/20 cursor-pointer flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        Refresh Data
+                    </button>
+                </div>
+            </header>
+
+            <div id="roster-container" class="space-y-8"></div>
+        </div>
+
+        <!-- المحتوى الثاني: المشروع الجديد (Project 2) -->
+        <div id="tab-project2" class="tab-content hidden">
+            <div class="bg-slate-900/80 border blue-border rounded-2xl p-8 blue-glow">
+                <h2 class="text-2xl font-bold text-blue-300 mb-4">المشروع الثاني (Project 2)</h2>
+                <p class="text-slate-400 mb-6">هذه صفحة فارغة جديدة كلياً ضمن نفس الرابط. يمكنك وضع أي محتوى تريده هنا (مثلاً لوحة تحكم أخرى، نظام إداري، أو إحصائيات).</p>
+                <div class="p-6 bg-slate-950/60 rounded-xl border border-blue-500/20 text-slate-300">
+                    <p>أخبرني ما هو المشروع الذي ترغب في وضعه هنا (مثلاً: نظام تسجيل عقوبات، نظام رواتب، أو صفحة إعلانات)، وسأقوم بكتابة الأكواد الخاصة به مباشرة داخل هذا القسم!</p>
                 </div>
             </div>
-            
-            <div class="mt-4 md:mt-0 flex gap-3">
-                <!-- Admin Mode Button -->
-                <button onclick="toggleAdminMode()" id="admin-btn" class="bg-slate-800 hover:bg-slate-700 text-blue-400 border border-blue-500/30 px-4 py-2.5 rounded-xl font-medium transition cursor-pointer flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <span id="admin-btn-text">Admin Mode (Locked)</span>
-                </button>
+        </div>
 
-                <!-- Refresh Button -->
-                <button onclick="fetchLiveRoster()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-medium transition shadow-lg shadow-blue-600/20 cursor-pointer flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                    Refresh Data
-                </button>
-            </div>
-        </header>
-
-        <!-- Main Content Container -->
-        <div id="roster-container" class="space-y-8"></div>
     </div>
 
-    <!-- Script Logic -->
     <script>
         const API_URL = 'https://lspd-bot-production-8924.up.railway.app/api/roster';
 
@@ -73,8 +93,31 @@
             "Police Upper Administration",
             "Police Administration",
             "Supervisors",
+            "Patrol Units",
             "Cadets"
         ];
+
+        // دالة التنقل بين الصفحات/التبويبات داخل نفس الرابط
+        function switchTab(tabName) {
+            const policeTab = document.getElementById('tab-police');
+            const project2Tab = document.getElementById('tab-project2');
+            const navPolice = document.getElementById('nav-police');
+            const navProject2 = document.getElementById('nav-project2');
+
+            if (tabName === 'police') {
+                policeTab.classList.remove('hidden');
+                project2Tab.classList.add('hidden');
+                
+                navPolice.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
+                navProject2.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
+            } else {
+                policeTab.classList.add('hidden');
+                project2Tab.classList.remove('hidden');
+                
+                navProject2.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
+                navPolice.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
+            }
+        }
 
         function toggleAdminMode() {
             if (isAdmin) {
@@ -155,14 +198,12 @@
                         </button>
                     ` : `<span class="text-slate-500 text-xs italic">Locked</span>`;
 
-                    // خط فاصل أسود خفيف وأنيق بين الأعضاء
                     rowsHtml += `
                         <tr class="hover:bg-blue-950/20 transition border-b border-black/60 last:border-none">
                             <td class="py-4 px-6 flex items-center gap-3">
                                 <img src="${officer.avatar || 'https://via.placeholder.com/40'}" alt="" class="w-10 h-10 rounded-full bg-slate-800 object-cover border border-blue-500/30">
                                 <span class="font-semibold text-slate-100">${officer.name || 'Unknown'}</span>
                             </td>
-                            <!-- Rank بخط أكبر مع توهج فضي -->
                             <td class="py-4 px-6 silver-glow-rank">${officer.rank || 'Member'}</td>
                             <td class="py-4 px-6 text-blue-400 font-mono text-sm font-bold">[${officer.badge || 'N/A'}]</td>
                             <td class="py-4 px-6">
@@ -209,7 +250,7 @@
             });
         }
 
-        window.deleteOfficer = async function(id) {
+        window.deleteOfficer = async function(id, event) {
             if (!isAdmin) {
                 alert('يجب تفعيل وضع المشرف (Admin Mode) أولاً!');
                 return;
