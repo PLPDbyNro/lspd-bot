@@ -199,7 +199,7 @@
     </div>
 
     <script>
-        const API_URL = 'https://lspd-bot-production-1daf.up.railway.app/api/roster'; // Update if your backend URL changes
+        const API_URL = 'https://lspd-bot-production-1daf.up.railway.app/api/roster'; // Update to 'http://localhost:3000/api/roster' if testing locally
         const ADMIN_PASSWORD = "1444";
 
         let officers = [];
@@ -573,35 +573,34 @@
                         renderRoster();
                     }
                 } catch (err) {
+                    console.warn('Backend delete failed, performing local UI update', err);
                     officers = officers.filter(o => String(o.id) !== String(id));
                     renderRoster();
                 }
             }
         };
 
+        // Export CSV functionality
         document.getElementById('export-csv').addEventListener('click', () => {
-            let csv = 'Badge,Name,Rank,Category,Responsibility,Status,Strikes,DiscordID\n';
+            let csvContent = "data:text/csv;charset=utf-8,Badge,Name,Rank,Responsibility,Status,Strikes,Discord ID\n";
             officers.forEach(o => {
                 const parsed = processOfficerBadgeAndName(o.name, o.badge);
-                csv += `"${parsed.badge}","${parsed.name}","${o.rank || ''}","${o.category || ''}","${o.responsibility || 'N/A'}","${o.status || 'Active'}",${o.strikes || 0},"${o.discord || o.id}"\n`;
+                let row = [parsed.badge, `"${parsed.name}"`, `"${o.rank}"`, `"${o.responsibility}"`, o.status || 'Active', o.strikes || 0, o.discord || 'N/A'];
+                csvContent += row.join(",") + "\n";
             });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', 'Personnel_Roster.csv');
-            a.click();
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "police_department_roster.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
 
+        // Initial fetch on page load
         fetchLiveRoster();
-        setInterval(fetchLiveRoster, 10000);
+        // Auto-refresh every 30 seconds
+        setInterval(fetchLiveRoster, 30000);
     </script>
 </body>
 </html>
-```[cite: 2]
-
-***
-
-<Elicitations message="What would you like to do next?">
-  <Elicitation label="Test live frontend" query="How can I preview and test this index.html file locally before hosting it?"/>
-</Elicitations>
