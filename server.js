@@ -35,7 +35,7 @@ const ROLE_MAPPINGS = [
 
 let cachedRoster = [];
 let lastFetchTime = 0;
-const CACHE_DURATION = 60 * 1000; // Cache responses for 1 minute to stop rate limits
+const CACHE_DURATION = 60 * 1000;
 
 app.get('/api/roster', async (req, res) => {
     try {
