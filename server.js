@@ -39,6 +39,7 @@ let cachedRoster = [];
 let lastFetchTime = 0;
 const CACHE_DURATION = 60 * 1000; // 1 minute cache
 
+// Get Roster API
 app.get('/api/roster', async (req, res) => {
     try {
         const now = Date.now();
@@ -46,7 +47,6 @@ app.get('/api/roster', async (req, res) => {
             return res.json(cachedRoster);
         }
 
-        // Check if client is ready and connected
         if (!client.isReady()) {
             if (cachedRoster.length > 0) return res.json(cachedRoster);
             return res.status(503).json({ error: 'Bot is still starting up, please try again in a moment.' });
@@ -76,7 +76,8 @@ app.get('/api/roster', async (req, res) => {
                     insignia: config.category === 'Cadets' ? 'cadet' : 'diamonds',
                     status: 'Active',
                     strikes: 0,
-                    discord: member.id
+                    discord: member.id,
+                    avatar: member.user.displayAvatarURL({ dynamic: true, size: 128 })
                 });
             }
         });
@@ -91,20 +92,31 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
+// Delete Officer from Roster Cache API
+app.delete('/api/roster/:id', (req, res) => {
+    const officerId = req.params.id;
+    try {
+        cachedRoster = cachedRoster.filter(officer => String(officer.id) !== String(officerId));
+        return res.status(200).json({ success: true, message: 'Officer removed from roster cache' });
+    } catch (err) {
+        console.error('Delete Error:', err);
+        return res.status(500).json({ error: 'Failed to delete record' });
+    }
+});
+
 // Discord Bot Events
 client.once('ready', (c) => {
     console.log(`[Discord Bot] Logged in successfully as ${c.user.tag}`);
 });
 
-// Start Express Server
+// Start Express Server & Login Bot
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`[Express Server] Online and listening on port ${PORT}`);
+    
+    if (!BOT_TOKEN) {
+        console.error('[Error] DISCORD_TOKEN environment variable is missing!');
+    } else {
+        client.login(BOT_TOKEN);
+    }
 });
-
-// Login to Discord using environment variable
-if (!BOT_TOKEN) {
-    console.error('[Error] DISCORD_TOKEN environment variable is missing!');
-} else {
-    client.login(BOT_TOKEN);
-}
