@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const client = new Client({
     intents: [
@@ -36,7 +37,7 @@ const ROLE_MAPPINGS = [
 
 let cachedRoster = [];
 let lastFetchTime = 0;
-const CACHE_DURATION = 60 * 1000;
+const CACHE_DURATION = 60 * 1000; // 1 minute cache
 
 app.get('/api/roster', async (req, res) => {
     try {
@@ -45,8 +46,18 @@ app.get('/api/roster', async (req, res) => {
             return res.json(cachedRoster);
         }
 
+        // Check if client is ready and connected
+        if (!client.isReady()) {
+            if (cachedRoster.length > 0) return res.json(cachedRoster);
+            return res.status(503).json({ error: 'Bot is still starting up, please try again in a moment.' });
+        }
+
         const guild = await client.guilds.fetch(GUILD_ID);
-        const members = await guild.members.fetch({ force: true }); 
+        if (!guild) {
+            return res.status(404).json({ error: 'Discord Guild not found' });
+        }
+
+        const members = await guild.members.fetch({ force: true });
         const roster = [];
 
         members.forEach(member => {
@@ -76,12 +87,24 @@ app.get('/api/roster', async (req, res) => {
     } catch (error) {
         console.error('API Error:', error);
         if (cachedRoster.length > 0) return res.json(cachedRoster);
-        res.status(500).json({ error: 'Failed to fetch' });
+        res.status(500).json({ error: 'Failed to fetch roster data from Discord' });
     }
 });
 
-client.once('ready', (c) => console.log(`Logged in as ${c.user.tag}`));
-client.login(BOT_TOKEN);
+// Discord Bot Events
+client.once('ready', (c) => {
+    console.log(`[Discord Bot] Logged in successfully as ${c.user.tag}`);
+});
 
+// Start Express Server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server online on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`[Express Server] Online and listening on port ${PORT}`);
+});
+
+// Login to Discord using environment variable
+if (!BOT_TOKEN) {
+    console.error('[Error] DISCORD_TOKEN environment variable is missing!');
+} else {
+    client.login(BOT_TOKEN);
+}
