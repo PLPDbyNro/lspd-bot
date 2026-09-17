@@ -33,18 +33,9 @@ const ROLE_MAPPINGS = [
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
 ];
 
-function parseUserBadgeAndName(displayName, fallbackPrefix) {
-    const raw = (displayName || '').trim();
-    const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
-    if (match) {
-        return { badge: match[1].trim(), name: match[2].trim() };
-    }
-    return { badge: fallbackPrefix || 'N/A', name: raw };
-}
-
 let cachedRoster = [];
 let lastFetchTime = 0;
-const CACHE_DURATION = 60 * 1000;
+const CACHE_DURATION = 60 * 1000; // Cache responses for 1 minute to stop rate limits
 
 app.get('/api/roster', async (req, res) => {
     try {
@@ -59,17 +50,14 @@ app.get('/api/roster', async (req, res) => {
 
         members.forEach(member => {
             if (member.user.bot) return;
-
-            const matchedRoles = ROLE_MAPPINGS.filter(config => member.roles.cache.has(config.id));
-            if (matchedRoles.length > 0) {
-                const config = matchedRoles[0];
-                const fullName = member.displayName || member.user.username;
-                const parsed = parseUserBadgeAndName(fullName, config.badgePrefix);
-
+            const config = ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
+            if (config) {
+                const raw = member.displayName || member.user.username;
+                const match = raw.match(/^([A-Za-z0-9]+(?:-[A-Za-z0-9]+)?)\s*[\|-]?\s+(.+)$/i);
                 roster.push({
                     id: member.id,
-                    badge: parsed.badge,
-                    name: parsed.name,
+                    badge: match ? match[1].trim() : config.badgePrefix,
+                    name: match ? match[2].trim() : raw,
                     rank: config.rank,
                     category: config.category,
                     responsibility: 'N/A',
@@ -83,22 +71,14 @@ app.get('/api/roster', async (req, res) => {
 
         cachedRoster = roster;
         lastFetchTime = now;
-
-        console.log(`[ROSTER API] Total extracted members: ${roster.length}`);
         res.json(roster);
     } catch (error) {
         console.error('API Error:', error);
-        if (cachedRoster.length > 0) {
-            console.log('[ROSTER API] Serving stale cache due to rate limit/error.');
-            return res.json(cachedRoster);
-        }
-        res.status(500).json({ error: 'Error fetching members from Discord' });
+        if (cachedRoster.length > 0) return res.json(cachedRoster);
+        res.status(500).json({ error: 'Failed to fetch' });
     }
 });
 
-client.once('ready', (c) => {
-    console.log(`[BOT ONLINE] Logged in as: ${c.user.tag}`);
-});
-
+client.once('ready', (c) => console.log(`Logged in as ${c.user.tag}`));
 client.login(BOT_TOKEN);
-app.listen(3000, () => console.log('[SERVER ONLINE] Running on port 3000'));
+app.listen(3000, () => console.log('Server online on port 3000'));
