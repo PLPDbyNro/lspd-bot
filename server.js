@@ -13,6 +13,7 @@ const client = new Client({
     ]
 });
 
+// Uses environment variable for security on GitHub & hosting platforms
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
 const GUILD_ID = '1548599612930007043';
 
@@ -81,4 +82,6 @@ app.get('/api/roster', async (req, res) => {
 
 client.once('ready', (c) => console.log(`Logged in as ${c.user.tag}`));
 client.login(BOT_TOKEN);
-app.listen(3000, () => console.log('Server online on port 3000'));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server online on port ${PORT}`));
