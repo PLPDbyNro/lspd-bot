@@ -13,7 +13,7 @@
         <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4">
             <h1 class="text-3xl font-bold tracking-tight">Personnel Roster</h1>
             <div class="mt-4 md:mt-0 flex gap-4">
-                <button onclick="fetchLiveRoster()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-medium transition">
+                <button onclick="fetchLiveRoster()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-medium transition cursor-pointer">
                     Refresh Data
                 </button>
             </div>
@@ -42,7 +42,6 @@
 
     <!-- Script Logic -->
     <script>
-        // Set your backend API URL here (e.g., your Railway deployment URL)
         const API_URL = 'https://lspd-bot-production-8924.up.railway.app/api/roster';
 
         let officers = [];
@@ -55,7 +54,6 @@
                 renderRoster();
             } catch (err) {
                 console.error('Error fetching live roster:', err);
-                // Fallback example if backend is unreachable during testing
                 renderRoster();
             }
         }
@@ -64,7 +62,7 @@
             const tbody = document.getElementById('roster-table-body');
             tbody.innerHTML = '';
 
-            if (officers.length === 0) {
+            if (!Array.isArray(officers) || officers.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-slate-400">No personnel records found.</td></tr>`;
                 return;
             }
@@ -87,7 +85,7 @@
                         </span>
                     </td>
                     <td class="py-4 px-6 text-right">
-                        <button onclick="deleteOfficer('${officer.id}')" class="text-rose-400 hover:text-rose-300 font-medium text-sm transition">
+                        <button onclick="deleteOfficer('${officer.id}')" class="text-rose-400 hover:text-rose-300 font-medium text-sm transition cursor-pointer">
                             Delete
                         </button>
                     </td>
