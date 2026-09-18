@@ -33,13 +33,16 @@
 <body class="min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
         
-        <!-- شريط التنقل العلوي بين المشاريع (Top Navigation Bar) -->
-        <nav class="flex justify-center md:justify-start gap-4 mb-8 border-b border-blue-900/40 pb-4">
+        <!-- شريط التنقل العلوي بين الصفحات (Top Navigation Bar) -->
+        <nav class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 border-b border-blue-900/40 pb-4">
             <button onclick="switchTab('police')" id="nav-police" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20">
                 Legal Forces Roster
             </button>
             <button onclick="switchTab('project2')" id="nav-project2" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
                 Radio Protocols & Codes
+            </button>
+            <button onclick="switchTab('project3')" id="nav-project3" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
+                Department Laws Summary
             </button>
         </nav>
 
@@ -73,9 +76,8 @@
             <div id="roster-container" class="space-y-8"></div>
         </div>
 
-        <!-- المحتوى الثاني: مشروع الأكواد والبروتوكولات (Project 2 - Radio Protocols) -->
+        <!-- المحتوى الثاني: مشروع الأكواد والبروتوكولات (Radio Protocols) -->
         <div id="tab-project2" class="tab-content hidden space-y-10">
-            <!-- Header section for Project 2 -->
             <div class="mb-6">
                 <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Radio Protocols & Codes</h2>
                 <p class="text-slate-400 text-sm">Radio calls, codes, how they are spoken, and what they mean.</p>
@@ -98,168 +100,89 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">طلب سكوت كامل في الراديُو لتمرير معلومات مهمة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">أولوية في الراديو</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 0</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 0</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">حالة إطلاق نار في الموقع</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">إطلاق النار</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 1</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 1</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">مطاردة مشتبه به في الطريق</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">مطاردة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 2</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 2</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">شخص يقوم ببيع مخدرات في المنطقة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">بيع مخدرات</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 3</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 3</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">بلاغ عن سرقة منزل</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة منزل</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 4</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 4</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بقالة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة بقالة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 5</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 5</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بنك صغير</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة بنك صغير FLECCA</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 6</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 6</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">سرقة محل المجوهرات جارية</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة محل مجوهرات</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 7</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 7</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">السطو على البنك المركزي</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة بنك مركزي</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 8</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 8</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">احتاج سيارة للنقل</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">طلب وسيلة النقل</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 9</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 9</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">تم خطف احد افراد الشرطة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">خطف شرطي</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 10</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 10</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">جميع الوحدات تجتمع في مركز الشرطة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">اجتماع الشرطة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 11</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 11</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">تم تسجيل دخول الى الخدمة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">تسجيل دخول</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 12</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 12</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">تم تسجيل خروج من الخدمة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">تسجيل خروج</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 13</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 13</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">بلاغ عن سرقة سيارة في منطقة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سرقة سيارة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">Code 14</td>
-                                <td class="py-4 px-6 blue-code text-right">Code 14</td>
-                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">طلب سكوت كامل في الراديُو لتمرير معلومات مهمة</td><td class="py-4 px-6 text-slate-300 text-right">أولوية في الراديو</td><td class="py-4 px-6 text-slate-300 text-right">Code 0</td><td class="py-4 px-6 blue-code text-right">Code 0</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">حالة إطلاق نار في الموقع</td><td class="py-4 px-6 text-slate-300 text-right">إطلاق النار</td><td class="py-4 px-6 text-slate-300 text-right">Code 1</td><td class="py-4 px-6 blue-code text-right">Code 1</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">مطاردة مشتبه به في الطريق</td><td class="py-4 px-6 text-slate-300 text-right">مطاردة</td><td class="py-4 px-6 text-slate-300 text-right">Code 2</td><td class="py-4 px-6 blue-code text-right">Code 2</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بنك صغير</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك صغير FLECCA</td><td class="py-4 px-6 text-slate-300 text-right">Code 6</td><td class="py-4 px-6 blue-code text-right">Code 6</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">السطو على البنك المركزي</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك مركزي</td><td class="py-4 px-6 text-slate-300 text-right">Code 8</td><td class="py-4 px-6 blue-code text-right">Code 8</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
 
-            <!-- جدول Codes 0 -->
+        <!-- المحتوى الثالث: قوانين وزارة الداخلية المختصرة (Department Laws Summary) -->
+        <div id="tab-project3" class="tab-content hidden space-y-10">
+            <div class="mb-6">
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Department Laws Summary</h2>
+                <p class="text-slate-400 text-sm">ملخص شامل ومختصر لأبرز قوانين وزارة الداخلية، الاستيقاف، المطاردات، والتعامل مع المجرمين.</p>
+            </div>
+
+            <!-- جدول 1: السلوكيات العامة وقوانين الأفراد -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 0</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">السلُوكيات العامة وضوابط أفراد الشرطة</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
-                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
-                                <th class="py-3 px-6 text-right">CALL (الرمز)</th>
+                                <th class="py-3 px-6 text-right">البند / المجال</th>
+                                <th class="py-3 px-6 text-right">التفاصيل والقواعد المختصرة</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">هل أنت في الاستماع ؟ أرسل، أنا أستمع</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">هل أنت في الخدمة في الاستماع</td>
-                                <td class="py-4 px-6 blue-code text-right">0-2</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">-</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">-</td>
-                                <td class="py-4 px-6 blue-code text-right">0-3</td>
-                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">الاحترام والتعامل</td><td class="py-4 px-6 text-slate-300 text-right">عدم التسلط، الاحترام المتبادل واجب، الجدية التامة في العمل وتقمص الشخصية العسكرية، ومنع أخذ الوظيفة بشكل كوميدي.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">المعدات والمركبات</td><td class="py-4 px-6 text-slate-300 text-right">الالتزام بالملابس والمركبات المخصصة للرتبة، وفحص الجاهزية عند بداية الدوام، ويمنع منعاً باتاً بيع أو إعطاء معدات الشرطة للمواطنين أو المسعفين (عرضة للبند النهائي).</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">استخدام الأسلحة</td><td class="py-4 px-6 text-slate-300 text-right">يمنع إخراج السلاح الناري أو التيزر إلا لحالات قصوى ومبررة بوضوح، ويمنع إطلاق النار بدون تحذير لفظي أو طلقة تحذيرية إلا عند مبادرة المجرم بإطلاق النار أو رفع السلاح.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">التحية العسكرية</td><td class="py-4 px-6 text-slate-300 text-right">إلزامية للرتب الأعلى داخل أقسام الشرطة فقط وتُمنع داخل الميدان؛ رفضها قد يؤدي للفصل للرتب العليا.</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- جدول Codes 10 -->
+            <!-- جدول 2: التعامل مع المجرمين والسجن -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 10</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">القبض، التحقيق، وإرسال السجن</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
-                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
-                                <th class="py-3 px-6 text-right">CALL (الرمز)</th>
+                                <th class="py-3 px-6 text-right">الإجراء القانوني</th>
+                                <th class="py-3 px-6 text-right">التفاصيل والخطوات</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">لا توجد نتائج</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">سلبي</td>
-                                <td class="py-4 px-6 blue-code text-right">10-2</td>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">إلقاء الحقوق</td><td class="py-4 px-6 text-slate-300 text-right">إلزامية الصياغة بدقة ودون تحريف عند الاعتقال (يحق للمواطن طلب إعادتها مرتين كحد أقصى).</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">شروط السجن</td><td class="py-4 px-6 text-slate-300 text-right">لا يُحق سجن أي شخص بدون دليل مثبت، مع وجوب تفتيشه وسحب الممنوعات ووضعها بخزانة المركز، فك الكلبشة، وتسجيل القضية في الـ MDT.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تخفيض المحكومية</td><td class="py-4 px-6 text-slate-300 text-right">خصم 70% عند الاعتراف بوجود محامي، خصم 50% عند الإقرار الكامل والواضح، وخصم 25% عند التأخر على المواطن.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- جدول 3: المطاردات والاستيقافات -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">قوانين المطاردات والاستيقاف المروري والجنائي</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">نوع الحالة</th>
+                                <th class="py-3 px-6 text-right">القواعد والضوابط الأساسية</th>
                             </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">تم الاستلام</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">وصلت الرسالة</td>
-                                <td class="py-4 px-6 blue-code text-right">10-4</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">احتاج دعم اضافي</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">طلب تعزيز</td>
-                                <td class="py-4 px-6 blue-code text-right">10-5</td>
-                            </tr>
-                            <tr class="hover:bg-blue-950/20 transition">
-                                <td class="py-4 px-6 text-slate-100 text-right font-medium">اعد اخر رسالة</td>
-                                <td class="py-4 px-6 text-slate-300 text-right">اعادة الرسالة</td>
-                                <td class="py-4 px-6 blue-code text-right">10-9</td>
-                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">المطاردات</td><td class="py-4 px-6 text-slate-300 text-right">الاستجابة بحد أقصى 3 دوريات بعد توجيه الدسباتش، تبليغ العمليات وتحديث الحالة دورياً، والصدم مسموح بأسباب محددة (مثل تعريض الحياة للخطر أو مرور 4 دقائق) وبسرعة لا تتجاوز 150km.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">الاستيقاف الإجباري (الصدم الاحترافي)</td><td class="py-4 px-6 text-slate-300 text-right">لتعطيل المركبة عند الهروب أو صدم دورية الشرطة؛ تكون الفترة الزمنية بين الصدمة والأخرى 30 ثانية في مواقع خالية.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">النطح والـتيـزر (Taser)</td><td class="py-4 px-6 text-slate-300 text-right">يُمنع نطح أو تيزرة شخص يحمل سلاحاً نارياً؛ المسافة الزمنية بين النطحات 5 ثوانٍ، وبين طلقات التيزر 10 ثوانٍ.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -287,21 +210,34 @@
         function switchTab(tabName) {
             const policeTab = document.getElementById('tab-police');
             const project2Tab = document.getElementById('tab-project2');
+            const project3Tab = document.getElementById('tab-project3');
+            
             const navPolice = document.getElementById('nav-police');
             const navProject2 = document.getElementById('nav-project2');
+            const navProject3 = document.getElementById('nav-project3');
+
+            // إخفاء الكل أولاً
+            policeTab.classList.add('hidden');
+            project2Tab.classList.add('hidden');
+            project3Tab.classList.add('hidden');
+
+            // إعادة تعيين أزرار التنقل
+            const defaultNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
+            const activeNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
+
+            navPolice.className = defaultNavClass;
+            navProject2.className = defaultNavClass;
+            navProject3.className = defaultNavClass;
 
             if (tabName === 'police') {
                 policeTab.classList.remove('hidden');
-                project2Tab.classList.add('hidden');
-                
-                navPolice.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
-                navProject2.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
-            } else {
-                policeTab.classList.add('hidden');
+                navPolice.className = activeNavClass;
+            } else if (tabName === 'project2') {
                 project2Tab.classList.remove('hidden');
-                
-                navProject2.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
-                navPolice.className = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
+                navProject2.className = activeNavClass;
+            } else if (tabName === 'project3') {
+                project3Tab.classList.remove('hidden');
+                navProject3.className = activeNavClass;
             }
         }
 
