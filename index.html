@@ -33,7 +33,7 @@
 <body class="min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
         
-        <!-- شريط التنقل العلوي بين الصفحات (Top Navigation Bar) -->
+        <!-- شريط التنقل العلوي بين الصفحات -->
         <nav class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 border-b border-blue-900/40 pb-4">
             <button onclick="switchTab('police')" id="nav-police" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20">
                 Legal Forces Roster
@@ -83,7 +83,6 @@
                 <p class="text-slate-400 text-sm">Radio calls, codes, how they are spoken, and what they mean.</p>
             </div>
 
-            <!-- جدول Codes الرئيسي -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
@@ -111,78 +110,132 @@
             </div>
         </div>
 
-        <!-- المحتوى الثالث: قوانين وزارة الداخلية المختصرة (Department Laws Summary) -->
+        <!-- المحتوى الثالث: قوانين وزارة الداخلية الشاملة (مرقمة من 1 إلى 16 مختصرة وبدون حذف) -->
         <div id="tab-project3" class="tab-content hidden space-y-10">
             <div class="mb-6">
-                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Department Laws Summary</h2>
-                <p class="text-slate-400 text-sm">ملخص شامل ومختصر لأبرز قوانين وزارة الداخلية، الاستيقاف، المطاردات، والتعامل مع المجرمين.</p>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Department Laws Summary (1 to 16)</h2>
+                <p class="text-slate-400 text-sm">ملخص شامل لجميع بنود وقوانين وزارة الداخلية المرقمة من 1 إلى 16 بدقة وبدون أي حذف.</p>
             </div>
 
-            <!-- جدول 1: السلوكيات العامة وقوانين الأفراد -->
+            <!-- جدول القوانين العامة والسلوك -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">السلُوكيات العامة وضوابط أفراد الشرطة</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">القسم الأول: السلوكيات العامة وضوابط الأفراد (البنود 1 إلى 6)</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">البند / المجال</th>
-                                <th class="py-3 px-6 text-right">التفاصيل والقواعد المختصرة</th>
+                                <th class="py-3 px-6 text-right w-24">البند</th>
+                                <th class="py-3 px-6 text-right">العنوان وملخص القاعدة</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">الاحترام والتعامل</td><td class="py-4 px-6 text-slate-300 text-right">عدم التسلط، الاحترام المتبادل واجب، الجدية التامة في العمل وتقمص الشخصية العسكرية، ومنع أخذ الوظيفة بشكل كوميدي.</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">المعدات والمركبات</td><td class="py-4 px-6 text-slate-300 text-right">الالتزام بالملابس والمركبات المخصصة للرتبة، وفحص الجاهزية عند بداية الدوام، ويمنع منعاً باتاً بيع أو إعطاء معدات الشرطة للمواطنين أو المسعفين (عرضة للبند النهائي).</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">استخدام الأسلحة</td><td class="py-4 px-6 text-slate-300 text-right">يمنع إخراج السلاح الناري أو التيزر إلا لحالات قصوى ومبررة بوضوح، ويمنع إطلاق النار بدون تحذير لفظي أو طلقة تحذيرية إلا عند مبادرة المجرم بإطلاق النار أو رفع السلاح.</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">التحية العسكرية</td><td class="py-4 px-6 text-slate-300 text-right">إلزامية للرتب الأعلى داخل أقسام الشرطة فقط وتُمنع داخل الميدان؛ رفضها قد يؤدي للفصل للرتب العليا.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 1</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الاحترام والتعامل العسكري:</strong> منع التسلط، فرض الاحترام المتبادل، الالتزام بالجدية وتقمص الشخصية العسكرية تماماً والابتعاد عن الكوميديا والميانات الزائدة داخل أوقات العمل الرسمية.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 2</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الالتزام بالرتب والمركبات:</strong> ارتداء زي الرتبة المخصص، استخدام السيارات المصرحة لكل رتبة، فحص الجاهزية عند بداية الدوام، ويمنع منعاً باتاً إعطاء أو بيع المعدات والعגל والأسلحة العسكرية لأي مدني أو مسعف (مخالفة تعرض للفصل النهائي).</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 3</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">ضوابط إشهار الأسلحة:</strong> يمنع منعاً باتاً إخراج السلاح الناري أو التيزر بدون سبب قانوني قاطع ومبرر، ويُشترط التنبيه والإنذار اللفظي أو إطلاق طلقة تحذيرية بالهواء قبل استخدام القوة (إلا في حال بادر المشتبه به برفع السلاح أو إطلاق النار).</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 4</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">التحية العسكرية:</strong> إلزامية للرتب الأعلى داخل مباني وأقسام الشرطة فقط، وتمنع نهائياً داخل الميدان ومناطق الاشتباك؛ معاقبة الرتب الكبيرة لمن يرفضها أحياناً بخصومات أو فصل حسب اللائحة.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 5</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">التعامل مع البلاغات والنداءات:</strong> سرعة الاستجابة لنداءات العمليات والدسباتش، وعدم التجاهل، وتوزيع الأدوار بين الدوريات بحسب الأولوية والمسافة الأقرب للموقع.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 6</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الالتزام بتعليمات القيادة:</strong> الطاعة العمياء والامتثال للأوامر الصادرة من الرتب القيادية العليا (الضباط والقيادات) أثناء العمل الميداني والعمليات المشتركة.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- جدول 2: التعامل مع المجرمين والسجن -->
+            <!-- جدول التعامل والقبض والسجن -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">القبض، التحقيق، وإرسال السجن</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">القسم الثاني: إجراءات الاعتقال، التحقيق، السجن والغرامات (البنود 7 إلى 11)</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">الإجراء القانوني</th>
-                                <th class="py-3 px-6 text-right">التفاصيل والخطوات</th>
+                                <th class="py-3 px-6 text-right w-24">البند</th>
+                                <th class="py-3 px-6 text-right">العنوان وملخص القاعدة</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">إلقاء الحقوق</td><td class="py-4 px-6 text-slate-300 text-right">إلزامية الصياغة بدقة ودون تحريف عند الاعتقال (يحق للمواطن طلب إعادتها مرتين كحد أقصى).</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">شروط السجن</td><td class="py-4 px-6 text-slate-300 text-right">لا يُحق سجن أي شخص بدون دليل مثبت، مع وجوب تفتيشه وسحب الممنوعات ووضعها بخزانة المركز، فك الكلبشة، وتسجيل القضية في الـ MDT.</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تخفيض المحكومية</td><td class="py-4 px-6 text-slate-300 text-right">خصم 70% عند الاعتراف بوجود محامي، خصم 50% عند الإقرار الكامل والواضح، وخصم 25% عند التأخر على المواطن.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 7</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">حقوق المتهم (إلقاء الحقوق):</strong> إلزامية قراءة حقوق المتهم بدقة عند القبض (يحق للموقوف طلب إعادتها مرتين كحد أقصى)، ويُمنع التحقيق معه أو سجنه بدون تلاوتها.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 8</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">أصول السجن والتفتيش:</strong> يمنع سجن أي شخص دون أدلة قطعية ومثبتة، مع وجوب تفتيشه بدقة، وضع الممنوعات في خزانة المركز، فك الكلبشة داخل الزنزانة، وتسجيل القضية بشكل كامل في الـ MDT.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 9</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">تخفيضات المحكومية والعقوبات:</strong> خصم 70% عند اعتراف المتهم بوجود محامي، خصم 50% عند الإقرار والتعاون الكامل، وخصم 25% تعويضاً عن تأخر الشرطي في إنهاء إجراءاته.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 10</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">المخالفات المرورية وتحرير المخالفات:</strong> إصدار المخالفات عبر النظام بالقيم المحددة بدقة، ويُمنع فرض غرامات اجتهادية غير مدرجة في اللائحة أو استغلال السلطة لابتزاز المواطنين مادياً.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 11</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">التعامل مع المحامين والجهات الرسمية:</strong> السماح للمحامي بمقابلة موكله وفقاً للضوابط، واحترام حصار واستقلالية الجهات الحكومية الأخرى (كالعدل والمسعفين).</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- جدول 3: المطاردات والاستيقافات -->
+            <!-- جدول المطاردات والاستيقافات (من 12 إلى 16) -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">قوانين المطاردات والاستيقاف المروري والجنائي</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">القسم الثالث: المطاردات، الاستيقاف، واستخدام القوة (البنود 12 إلى 16)</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">نوع الحالة</th>
-                                <th class="py-3 px-6 text-right">القواعد والضوابط الأساسية</th>
+                                <th class="py-3 px-6 text-right w-24">البند</th>
+                                <th class="py-3 px-6 text-right">العنوان وملخص القاعدة</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">المطاردات</td><td class="py-4 px-6 text-slate-300 text-right">الاستجابة بحد أقصى 3 دوريات بعد توجيه الدسباتش، تبليغ العمليات وتحديث الحالة دورياً، والصدم مسموح بأسباب محددة (مثل تعريض الحياة للخطر أو مرور 4 دقائق) وبسرعة لا تتجاوز 150km.</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">الاستيقاف الإجباري (الصدم الاحترافي)</td><td class="py-4 px-6 text-slate-300 text-right">لتعطيل المركبة عند الهروب أو صدم دورية الشرطة؛ تكون الفترة الزمنية بين الصدمة والأخرى 30 ثانية في مواقع خالية.</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">النطح والـتيـزر (Taser)</td><td class="py-4 px-6 text-slate-300 text-right">يُمنع نطح أو تيزرة شخص يحمل سلاحاً نارياً؛ المسافة الزمنية بين النطحات 5 ثوانٍ، وبين طلقات التيزر 10 ثوانٍ.</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 12</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">قواعد المطاردات الميدانية:</strong> الحد الأقصى الاستجابة بـ 3 دوريات حسب توجيه الدسباتش، إبلاغ العمليات باستمرار وتحديث الحالة، ويُمنع العشوائية في الانضمام للمطاردة.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 13</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">صدم المركبات (الصدم الاحترافي):</strong> مسموح لأسباب موجبة (مثل تعريض حياة المدنيين للخطر أو مرور 4 دقائق على الهروب)، وبسرعة لا تتجاوز 150km، وفي مناطق آمنة وخالية من المارة.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 14</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الاستيقاف الإجباري وتعطيل الهروب:</strong> استخدام تقنيات تطويق وإيقاف المركبة الهاربة التي تصدم دوريات الشرطة أو ترفض التوقف، مع فاصل زمني 30 ثانية بين كل صدمة وأخرى.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 15</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">ضوابط النطح واستخدام التيزر (Taser):</strong> يمنع نهائياً نطح أو تيزرة شخص يحمل سلاحاً نارياً مفعلاً؛ والمسافة الزمنية الإلزامية بين النطحات 5 ثوانٍ، وبين طلقات التيزر 10 ثوانٍ كاملة.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-950/20 transition">
+                                <td class="py-4 px-6 blue-code text-right font-bold">البند 16</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">حالات إطلاق النار الميداني الخطير:</strong> يُسمح بفتح النار المباشر فقط لإنقاذ حياة مهددة بالخطر المباشر (مثل إطلاق نار حي من الجاني على الأفراد أو المدنيين) وبعد استنفاد التحذيرات النظامية الممكنة.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -216,12 +269,10 @@
             const navProject2 = document.getElementById('nav-project2');
             const navProject3 = document.getElementById('nav-project3');
 
-            // إخفاء الكل أولاً
             policeTab.classList.add('hidden');
             project2Tab.classList.add('hidden');
             project3Tab.classList.add('hidden');
 
-            // إعادة تعيين أزرار التنقل
             const defaultNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
             const activeNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
 
