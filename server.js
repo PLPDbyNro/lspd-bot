@@ -33,18 +33,27 @@ const ROLE_MAPPINGS = [
     { id: "1548745686609305600", rank: "Staff Sergeant", category: "Supervisors", badgePrefix: "S-2" },
     { id: "1548745687532044428", rank: "Sergeant", category: "Supervisors", badgePrefix: "S-1" },
     
-    // تم تعديل القسم هنا ليصبح Patrol Units بدلاً من Cadets
     { id: "1548745688505131009", rank: "Senior Officer", category: "Patrol Units", badgePrefix: "SO-" },
     { id: "1548745690396491837", rank: "Officer", category: "Patrol Units", badgePrefix: "O-" },
     
-    // Academy وحدها في Cadets
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
+];
+
+// أضف هنا أدوار وشارات الوحدات الخاصة الخاصة بك (Special Units Role IDs)
+const SPECIAL_ROLE_MAPPINGS = [
+    // { id: "YOUR_DISCORD_ROLE_ID_1", rank: "Tactical Commander", category: "Tactical Command", badgePrefix: "TC-" },
+    // { id: "YOUR_DISCORD_ROLE_ID_2", rank: "SWAT Operative", category: "SWAT Operators", badgePrefix: "SW-" }
 ];
 
 let cachedRoster = [];
 let lastFetchTime = 0;
+
+let cachedSpecialRoster = [];
+let lastSpecialFetchTime = 0;
+
 const CACHE_DURATION = 60 * 1000;
 
+// API 1: Legal Forces Roster
 app.get('/api/roster', async (req, res) => {
     try {
         const now = Date.now();
@@ -98,6 +107,64 @@ app.get('/api/roster', async (req, res) => {
         console.error('API Error:', error);
         if (cachedRoster.length > 0) return res.json(cachedRoster);
         res.status(500).json({ error: 'Failed to fetch roster data' });
+    }
+});
+
+// API 2: Special Units Roster (الجديد)
+app.get('/api/special-units', async (req, res) => {
+    try {
+        const now = Date.now();
+        if (cachedSpecialRoster.length > 0 && (now - lastSpecialFetchTime < CACHE_DURATION)) {
+            return res.json(cachedSpecialRoster);
+        }
+
+        if (!client.isReady()) {
+            if (cachedSpecialRoster.length > 0) return res.json(cachedSpecialRoster);
+            return res.status(503).json({ error: 'Bot is still starting up.' });
+        }
+
+        const guild = await client.guilds.fetch(GUILD_ID);
+        if (!guild) return res.status(404).json({ error: 'Guild not found' });
+
+        const members = await guild.members.fetch({ force: true });
+        const specialRoster = [];
+
+        members.forEach(member => {
+            if (member.user.bot) return;
+            const config = SPECIAL_ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
+            if (config) {
+                const raw = member.displayName || member.user.username;
+                const match = raw.match(/^\[?([A-Za-z0-9-]+)\]?\s*[\|-]?\s+(.+)$/);
+                
+                let badgeVal = match ? match[1].trim() : config.badgePrefix;
+                let nameVal = match ? match[2].trim() : raw;
+
+                specialRoster.push({
+                    id: member.id,
+                    discordId: member.id,
+                    badge: badgeVal,
+                    name: nameVal,
+                    rank: config.rank,
+                    category: config.category,
+                    status: 'Active Duty',
+                    avatar: member.user.displayAvatarURL({ dynamic: true, size: 128 })
+                });
+            }
+        });
+
+        specialRoster.sort((a, b) => {
+            const indexA = SPECIAL_ROLE_MAPPINGS.findIndex(r => r.rank === a.rank);
+            const indexB = SPECIAL_ROLE_MAPPINGS.findIndex(r => r.rank === b.rank);
+            return indexA - indexB;
+        });
+
+        cachedSpecialRoster = specialRoster;
+        lastSpecialFetchTime = now;
+        res.json(specialRoster);
+    } catch (error) {
+        console.error('Special Units API Error:', error);
+        if (cachedSpecialRoster.length > 0) return res.json(cachedSpecialRoster);
+        res.status(500).json({ error: 'Failed to fetch special units data' });
     }
 });
 
