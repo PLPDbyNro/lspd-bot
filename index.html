@@ -83,6 +83,7 @@
                 <p class="text-slate-400 text-sm">Radio calls, codes, how they are spoken, and what they mean.</p>
             </div>
 
+            <!-- جدول الأكواد الرئيسية (Codes) -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
@@ -94,23 +95,97 @@
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
                                 <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
                                 <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
-                                <th class="py-3 px-6 text-right">PRONUNCIATION (الاختصار)</th>
                                 <th class="py-3 px-6 text-right">CALL (طريقة النطق)</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">طلب سكوت كامل في الراديُو لتمرير معلومات مهمة</td><td class="py-4 px-6 text-slate-300 text-right">أولوية في الراديو</td><td class="py-4 px-6 text-slate-300 text-right">Code 0</td><td class="py-4 px-6 blue-code text-right">Code 0</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">حالة إطلاق نار في الموقع</td><td class="py-4 px-6 text-slate-300 text-right">إطلاق النار</td><td class="py-4 px-6 text-slate-300 text-right">Code 1</td><td class="py-4 px-6 blue-code text-right">Code 1</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">مطاردة مشتبه به في الطريق</td><td class="py-4 px-6 text-slate-300 text-right">مطاردة</td><td class="py-4 px-6 text-slate-300 text-right">Code 2</td><td class="py-4 px-6 blue-code text-right">Code 2</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بنك صغير</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك صغير FLECCA</td><td class="py-4 px-6 text-slate-300 text-right">Code 6</td><td class="py-4 px-6 blue-code text-right">Code 6</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">السطو على البنك المركزي</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك مركزي</td><td class="py-4 px-6 text-slate-300 text-right">Code 8</td><td class="py-4 px-6 blue-code text-right">Code 8</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">طلب سكوت كامل في الراديُو لتمرير معلومات مهمة</td><td class="py-4 px-6 text-slate-300 text-right">أولوية في الراديو</td><td class="py-4 px-6 blue-code text-right">Code 0</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">حالة إطلاق نار في الموقع</td><td class="py-4 px-6 text-slate-300 text-right">إطلاق النار</td><td class="py-4 px-6 blue-code text-right">Code 1</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">مطاردة مشتبه به في الطريق</td><td class="py-4 px-6 text-slate-300 text-right">مطاردة</td><td class="py-4 px-6 blue-code text-right">Code 2</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">شخص يقوم ببيع مخدرات في المنطقة</td><td class="py-4 px-6 text-slate-300 text-right">بيع مخدرات</td><td class="py-4 px-6 blue-code text-right">Code 3</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">بلاغ عن سرقة منزل</td><td class="py-4 px-6 text-slate-300 text-right">سرقة منزل</td><td class="py-4 px-6 blue-code text-right">Code 4</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بقالة</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بقالة</td><td class="py-4 px-6 blue-code text-right">Code 5</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">عملية سطو على بنك صغير</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك صغير FLECCA</td><td class="py-4 px-6 blue-code text-right">Code 6</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">سرقة محل المجوهرات جارية</td><td class="py-4 px-6 text-slate-300 text-right">سرقة محل مجوهرات</td><td class="py-4 px-6 blue-code text-right">Code 7</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">السطو على البنك المركزي</td><td class="py-4 px-6 text-slate-300 text-right">سرقة بنك مركزي</td><td class="py-4 px-6 blue-code text-right">Code 8</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">احتاج سيارة للنقل</td><td class="py-4 px-6 text-slate-300 text-right">طلب وسيلة النقل</td><td class="py-4 px-6 blue-code text-right">Code 9</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تم خطف احد افراد الشرطة</td><td class="py-4 px-6 text-slate-300 text-right">خطف شرطي</td><td class="py-4 px-6 blue-code text-right">Code 10</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">جميع الوحدات تجتمع في مركز الشرطة</td><td class="py-4 px-6 text-slate-300 text-right">اجتماع الشرطة</td><td class="py-4 px-6 blue-code text-right">Code 11</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تم تسجيل دخول الى الخدمة</td><td class="py-4 px-6 text-slate-300 text-right">تسجيل دخول</td><td class="py-4 px-6 blue-code text-right">Code 12</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تم تسجيل خروج من الخدمة</td><td class="py-4 px-6 text-slate-300 text-right">تسجيل خروج</td><td class="py-4 px-6 blue-code text-right">Code 13</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">بلاغ عن سرقة سيارة في منطقة</td><td class="py-4 px-6 text-slate-300 text-right">سرقة سيارة</td><td class="py-4 px-6 blue-code text-right">Code 14</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <!-- جدول أكواد الصفر (Codes 0) -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 0</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
+                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
+                                <th class="py-3 px-6 text-right">CALL (طريقة النطق)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">هل أنت في الاستماع ؟</td><td class="py-4 px-6 text-slate-300 text-right">هل أنت في الخدمة</td><td class="py-4 px-6 blue-code text-right">0-2</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">أرسل، أنا أستمع</td><td class="py-4 px-6 text-slate-300 text-right">في الاستماع</td><td class="py-4 px-6 blue-code text-right">0-3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- جدول أكواد العشرة (Codes 10) -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 10</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
+                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
+                                <th class="py-3 px-6 text-right">CALL (طريقة النطق)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">لا توجد نتائج</td><td class="py-4 px-6 text-slate-300 text-right">سلبي</td><td class="py-4 px-6 blue-code text-right">10-2</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تم الاستلام</td><td class="py-4 px-6 text-slate-300 text-right">وصلت الرسالة</td><td class="py-4 px-6 blue-code text-right">10-4</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">احتاج دعم اضافي</td><td class="py-4 px-6 text-slate-300 text-right">طلب تعزيز</td><td class="py-4 px-6 blue-code text-right">10-5</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">اعد اخر رسالة</td><td class="py-4 px-6 text-slate-300 text-right">اعادة الرسالة</td><td class="py-4 px-6 blue-code text-right">10-9</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- قسم خريطة القطاعات والمناطق (Jurisdiction & Sectors Map) -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">خريطة مناطق والقطاعات الأمنية (Sectors Map)</h3>
+                </div>
+                <div class="p-6 flex flex-col items-center justify-center bg-slate-950/40">
+                    <div class="w-full max-w-4xl rounded-xl overflow-hidden border border-blue-500/20 shadow-2xl bg-slate-950 p-2 relative group">
+                        <img src="image_9abede.jpg" alt="Jurisdiction Sectors Map" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]">
+                        <div class="absolute bottom-4 right-4 bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-lg border border-blue-500/30 text-xs text-blue-300 shadow-lg">
+                            خريطة توزيع الدوريات والقطاعات
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-xs mt-4 text-center">توضح الخريطة التقسيمات الجغرافية والقطاعات الحيوية لعمل دوريات القوات القانونية في الميدان.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- المحتوى الثالث: قوانين وزارة الداخلية الشاملة (بدون العبارة العلوية) -->
+        <!-- المحتوى الثالث: قوانين وزارة الداخلية الشاملة -->
         <div id="tab-project3" class="tab-content hidden space-y-10">
             <div class="mb-6">
                 <h2 class="text-3xl font-extrabold text-white tracking-tight">Department Laws Summary (1 to 16)</h2>
@@ -137,7 +212,7 @@
                             </tr>
                             <tr class="hover:bg-blue-950/20 transition">
                                 <td class="py-4 px-6 blue-code text-right font-bold">البند 2</td>
-                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الالتزام بالرتب والمركبات:</strong> ارتداء زي الرتبة المخصص، استخدام السيارات المصرحة لكل رتبة، فحص الجاهزية عند بداية الدوام، ويمنع منعاً باتاً إعطاء أو بيع المعدات والعגל والأسلحة العسكرية لأي مدني أو مسعف (مخالفة تعرض للفصل النهائي).</td>
+                                <td class="py-4 px-6 text-slate-300 text-right"><strong class="text-white">الالتزام بالرتب والمركبات:</strong> ارتداء زي الرتبة المخصص، استخدام السيارات المصرحة لكل رتبة، فحص الجاهزية عند بداية الدوام، ويمنع منعاً باتاً إعطاء أو بيع المعدات والأسلحة العسكرية لأي مدني أو مسعف (مخالفة تعرض للفصل النهائي).</td>
                             </tr>
                             <tr class="hover:bg-blue-950/20 transition">
                                 <td class="py-4 px-6 blue-code text-right font-bold">البند 3</td>
