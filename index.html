@@ -241,7 +241,6 @@
             "Cadets"
         ];
 
-        // ترتيب الفئات والأجنحة الخاصة في الواجهة
         const SPECIAL_CATEGORY_ORDER = [
             "Special Unit Chief",
             "Negotiator Wing",
@@ -432,14 +431,11 @@
                         <tr class="hover:bg-indigo-950/20 transition border-b border-black/60 last:border-none">
                             <td class="py-4 px-6 flex items-center gap-3">
                                 <img src="${operative.avatar || 'https://via.placeholder.com/40'}" alt="" class="w-10 h-10 rounded-full bg-slate-800 object-cover border border-indigo-500/30">
-                                <div>
-                                    <span class="font-semibold text-slate-100 block">${operative.name || 'Unknown'}</span>
-                                    <span class="text-[10px] text-indigo-400 font-mono">Discord ID: ${operative.discordId || operative.id || 'N/A'}</span>
-                                </div>
+                                <span class="font-semibold text-slate-100">${operative.name || 'Unknown'}</span>
                             </td>
-                            <td class="py-4 px-6 silver-glow-rank">${operative.rank || 'Operator'}</td>
-                            <td class="py-4 px-6 text-indigo-400 font-mono text-sm font-bold">Badge: [${operative.badge || 'N/A'}]</td>
-                            <td class="py-4 px-6"><span class="px-3 py-1 text-xs rounded-full font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">${operative.status || 'Active Duty'}</span></td>
+                            <td class="py-4 px-6 silver-glow-rank">${operative.rank || 'Member'}</td>
+                            <td class="py-4 px-6 text-indigo-400 font-mono text-sm font-bold">[${operative.badge || 'N/A'}]</td>
+                            <td class="py-4 px-6"><span class="px-3 py-1 text-xs rounded-full font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${operative.status || 'Active'}</span></td>
                             <td class="py-4 px-6 text-right">${actionButtonHtml}</td>
                         </tr>
                     `;
@@ -447,11 +443,11 @@
                 sectionDiv.innerHTML = `
                     <div class="bg-gradient-to-r from-indigo-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-indigo-900/30 flex justify-between items-center">
                         <h2 class="text-lg font-bold text-indigo-200 tracking-wide flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>${categoryName}</h2>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-medium">${catOperatives.length} Operatives</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-medium">${catOperatives.length} Members</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
-                            <thead><tr class="bg-slate-950/40 text-slate-400 uppercase text-xs tracking-wider border-b border-black"><th class="py-3 px-6">Operative / Discord User</th><th class="py-3 px-6">Special Rank</th><th class="py-3 px-6">Badge Prefix</th><th class="py-3 px-6">Status</th><th class="py-3 px-6 text-right">Actions</th></tr></thead>
+                            <thead><tr class="bg-slate-950/40 text-slate-400 uppercase text-xs tracking-wider border-b border-black"><th class="py-3 px-6">Operative / Member</th><th class="py-3 px-6">Rank</th><th class="py-3 px-6">Badge / ID</th><th class="py-3 px-6">Status</th><th class="py-3 px-6 text-right">Actions</th></tr></thead>
                             <tbody class="divide-y divide-black/60">${rowsHtml}</tbody>
                         </table>
                     </div>
@@ -460,26 +456,11 @@
             });
         }
 
-        window.deleteOfficer = async function(id) {
-            if (!isAdmin) { alert('يجب تفعيل وضع المشرف أولاً!'); return; }
-            if (confirm('Delete this record?')) {
-                await fetch(`${API_URL}/${id}`, { method: 'DELETE' }).catch(() => {});
-                officers = officers.filter(o => String(o.id) !== String(id));
-                renderRoster();
-            }
+        // Fetch initial data on load
+        window.onload = () => {
+            fetchLiveRoster();
+            fetchSpecialLiveRoster();
         };
-
-        window.deleteSpecialOfficer = async function(id) {
-            if (!isAdmin) { alert('يجب تفعيل وضع المشرف أولاً!'); return; }
-            if (confirm('Delete this special unit record?')) {
-                await fetch(`${SPECIAL_API_URL}/${id}`, { method: 'DELETE' }).catch(() => {});
-                specialOfficers = specialOfficers.filter(o => String(o.id) !== String(id));
-                renderSpecialRoster();
-            }
-        };
-
-        fetchLiveRoster();
-        fetchSpecialLiveRoster();
     </script>
 </body>
 </html>
