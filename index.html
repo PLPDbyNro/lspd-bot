@@ -355,7 +355,6 @@
 
     <script>
         const API_URL = 'https://lspd-bot-production-8924.up.railway.app/api/roster';
-        // يمكنك تغيير الـ URL الخاص بالـ Special Units حسب الرابط المتوفر لديك في الباك إند
         const SPECIAL_API_URL = 'https://lspd-bot-production-8924.up.railway.app/api/special-units';
 
         let officers = [];
@@ -486,7 +485,6 @@
                 renderSpecialRoster();
             } catch (err) {
                 console.error('Error fetching special roster:', err);
-                // Fallback demo or empty state if endpoint is pending
                 statusEl.textContent = `Connected (Awaiting live endpoint response)`;
                 statusEl.className = 'text-xs text-amber-400 mt-1';
                 specialOfficers = [];
