@@ -39,10 +39,26 @@ const ROLE_MAPPINGS = [
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
 ];
 
-// أضف هنا أدوار وشارات الوحدات الخاصة الخاصة بك (Special Units Role IDs)
+// أدوار وشارات الوحدات الخاصة والأجنحة (Special Units Role Mappings)
 const SPECIAL_ROLE_MAPPINGS = [
-    // { id: "YOUR_DISCORD_ROLE_ID_1", rank: "Tactical Commander", category: "Tactical Command", badgePrefix: "TC-" },
-    // { id: "YOUR_DISCORD_ROLE_ID_2", rank: "SWAT Operative", category: "SWAT Operators", badgePrefix: "SW-" }
+    { id: "1548745695387983924", rank: "Special Unit Chief", category: "Special Unit Chief", badgePrefix: "SUC-" },
+    
+    { id: "1548745710126637097", rank: "Negotiator Chief", category: "Negotiator Wing", badgePrefix: "NC-" },
+    { id: "1548745728292298873", rank: "Negotiator", category: "Negotiator Wing", badgePrefix: "NEG-" },
+    
+    { id: "1548745712034910329", rank: "Motorcycle Commander", category: "Motorcycle Wing", badgePrefix: "MC-" },
+    { id: "1548745713284812830", rank: "Motorcycle Deputy", category: "Motorcycle Wing", badgePrefix: "MD-" },
+    { id: "1548745725980967093", rank: "Motorcycle Unit", category: "Motorcycle Wing", badgePrefix: "MTR-" },
+    
+    { id: "1548745708251914310", rank: "Airship Commander", category: "Air Support Wing", badgePrefix: "AC-" },
+    { id: "1548745751209709729", rank: "Airship Deputy", category: "Air Support Wing", badgePrefix: "AD-" },
+    { id: "1548745726912106767", rank: "Airship Unit", category: "Air Support Wing", badgePrefix: "AIR-" },
+    
+    { id: "1548745714459213965", rank: "Speed Unit Commander", category: "Speed Unit Wing", badgePrefix: "SUC-" },
+    { id: "1548745730364284928", rank: "Speed Unit", category: "Speed Unit Wing", badgePrefix: "SPD-" },
+    
+    { id: "1548745701838962698", rank: "Academy Instructor Supervisor", category: "Watch Command", badgePrefix: "AIS-" },
+    { id: "1548745720700551188", rank: "Academy Instructor", category: "Watch Command", badgePrefix: "AI-" }
 ];
 
 let cachedRoster = [];
@@ -110,7 +126,7 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
-// API 2: Special Units Roster (الجديد)
+// API 2: Special Units Roster
 app.get('/api/special-units', async (req, res) => {
     try {
         const now = Date.now();
@@ -172,6 +188,16 @@ app.delete('/api/roster/:id', (req, res) => {
     const officerId = req.params.id;
     try {
         cachedRoster = cachedRoster.filter(officer => String(officer.id) !== String(officerId));
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        return res.status(500).json({ error: 'Failed to delete' });
+    }
+});
+
+app.delete('/api/special-units/:id', (req, res) => {
+    const officerId = req.params.id;
+    try {
+        cachedSpecialRoster = cachedSpecialRoster.filter(officer => String(officer.id) !== String(officerId));
         return res.status(200).json({ success: true });
     } catch (err) {
         return res.status(500).json({ error: 'Failed to delete' });
