@@ -85,7 +85,6 @@ app.get('/api/roster', async (req, res) => {
         const guild = await client.guilds.fetch(GUILD_ID);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
-        // الاعتماد على الكاش المحلي لتفادي Rate Limit (Opcode 8)
         const members = guild.members.cache;
         const roster = [];
 
@@ -111,7 +110,6 @@ app.get('/api/roster', async (req, res) => {
             }
         });
 
-        // إذا كان الكاش فارغاً تماماً، يتم جلبه لمرة واحدة فقط
         if (roster.length === 0) {
             const fetchedMembers = await guild.members.fetch();
             fetchedMembers.forEach(member => {
@@ -149,7 +147,7 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
-// API 2: Special Units Roster
+// API 2: Special Units Roster (محدث باستخدام filter لدعم تعدد الوحدات)
 app.get('/api/special-units', async (req, res) => {
     try {
         const now = Date.now();
@@ -170,8 +168,11 @@ app.get('/api/special-units', async (req, res) => {
 
         members.forEach(member => {
             if (member.user.bot) return;
-            const config = SPECIAL_ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
-            if (config) {
+            
+            // استخدام filter بدلاً من find لجلب كل أدوار الوحدات التي يمتلكها العضو
+            const matchedConfigs = SPECIAL_ROLE_MAPPINGS.filter(c => member.roles.cache.has(c.id));
+            
+            matchedConfigs.forEach(config => {
                 const raw = member.displayName || member.user.username;
                 const match = raw.match(/^\[?([A-Za-z0-9-]+)\]?\s*[\|-]?\s+(.+)$/);
                 
@@ -179,7 +180,7 @@ app.get('/api/special-units', async (req, res) => {
                 let nameVal = match ? match[2].trim() : raw;
 
                 specialRoster.push({
-                    id: member.id,
+                    id: `${member.id}-${config.rank}`, // معرف فريد لكل رتبة لكي يظهر العضو في كل وحدة بشكل مستقل
                     discordId: member.id,
                     badge: badgeVal,
                     name: nameVal,
@@ -188,7 +189,7 @@ app.get('/api/special-units', async (req, res) => {
                     status: 'Active Duty',
                     avatar: member.user.displayAvatarURL({ dynamic: true, size: 128 })
                 });
-            }
+            });
         });
 
         specialRoster.sort((a, b) => {
