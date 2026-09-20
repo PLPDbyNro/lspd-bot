@@ -39,7 +39,6 @@ const ROLE_MAPPINGS = [
     { id: "1548745691709571154", rank: "Academy", category: "Cadets", badgePrefix: "300" }
 ];
 
-// أدوار وشارات الوحدات الخاصة والأجنحة (Special Units Role Mappings)
 const SPECIAL_ROLE_MAPPINGS = [
     { id: "1548745695387983924", rank: "Special Unit Chief", category: "Special Unit Chief", badgePrefix: "SUC-" },
     
@@ -67,7 +66,7 @@ let lastFetchTime = 0;
 let cachedSpecialRoster = [];
 let lastSpecialFetchTime = 0;
 
-const CACHE_DURATION = 60 * 1000; // تخزين مؤقت لمدة دقيقة كاملة
+const CACHE_DURATION = 60 * 1000; // دقيقة واحدة
 
 // API 1: Legal Forces Roster
 app.get('/api/roster', async (req, res) => {
@@ -82,9 +81,11 @@ app.get('/api/roster', async (req, res) => {
             return res.status(503).json({ error: 'Bot is still starting up.' });
         }
 
-        const guild = await client.guilds.fetch(GUILD_ID);
+        const guild = await client.guilds.fetch(GUILD_ID).catch(() => null);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
+        // ضمان جلب كافة الأعضاء من السيرفر
+        await guild.members.fetch().catch(() => {});
         const members = guild.members.cache;
         const roster = [];
 
@@ -110,27 +111,6 @@ app.get('/api/roster', async (req, res) => {
             }
         });
 
-        if (roster.length === 0) {
-            const fetchedMembers = await guild.members.fetch();
-            fetchedMembers.forEach(member => {
-                if (member.user.bot) return;
-                const config = ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
-                if (config) {
-                    const raw = member.displayName || member.user.username;
-                    const match = raw.match(/^\[?([A-Za-z0-9-]+)\]?\s*[\|-]?\s+(.+)$/);
-                    roster.push({
-                        id: member.id,
-                        badge: match ? match[1].trim() : config.badgePrefix,
-                        name: match ? match[2].trim() : raw,
-                        rank: config.rank,
-                        category: config.category,
-                        status: 'Active',
-                        avatar: member.user.displayAvatarURL({ dynamic: true, size: 128 })
-                    });
-                }
-            });
-        }
-
         roster.sort((a, b) => {
             const indexA = ROLE_MAPPINGS.findIndex(r => r.rank === a.rank);
             const indexB = ROLE_MAPPINGS.findIndex(r => r.rank === b.rank);
@@ -147,7 +127,7 @@ app.get('/api/roster', async (req, res) => {
     }
 });
 
-// API 2: Special Units Roster (محدث باستخدام filter لدعم تعدد الوحدات)
+// API 2: Special Units Roster
 app.get('/api/special-units', async (req, res) => {
     try {
         const now = Date.now();
@@ -160,16 +140,16 @@ app.get('/api/special-units', async (req, res) => {
             return res.status(503).json({ error: 'Bot is still starting up.' });
         }
 
-        const guild = await client.guilds.fetch(GUILD_ID);
+        const guild = await client.guilds.fetch(GUILD_ID).catch(() => null);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
+        await guild.members.fetch().catch(() => {});
         const members = guild.members.cache;
         const specialRoster = [];
 
         members.forEach(member => {
             if (member.user.bot) return;
             
-            // استخدام filter بدلاً من find لجلب كل أدوار الوحدات التي يمتلكها العضو
             const matchedConfigs = SPECIAL_ROLE_MAPPINGS.filter(c => member.roles.cache.has(c.id));
             
             matchedConfigs.forEach(config => {
@@ -180,7 +160,7 @@ app.get('/api/special-units', async (req, res) => {
                 let nameVal = match ? match[2].trim() : raw;
 
                 specialRoster.push({
-                    id: `${member.id}-${config.rank}`, // معرف فريد لكل رتبة لكي يظهر العضو في كل وحدة بشكل مستقل
+                    id: `${member.id}-${config.rank}`,
                     discordId: member.id,
                     badge: badgeVal,
                     name: nameVal,
@@ -228,11 +208,21 @@ app.delete('/api/special-units/:id', (req, res) => {
     }
 });
 
-client.once('clientReady', (c) => {
-    console.log(`[Bot] Logged in as ${c.user.tag}`);
+// استخدام الحدث الصحيح ready لتفادي تعليق البوت
+client.once('ready', (c) => {
+    console.log(`[Bot] Logged in successfully as ${c.user.tag}`);
 });
 
 const PORT = process.env.PORT || 3000;
+
+// تشغيل سيرفر الـ Express أولاً لضمان استجابة المنصة (Railway)
 app.listen(PORT, () => {
-    if (BOT_TOKEN) client.login(BOT_TOKEN);
+    console.log(`[Server] Server is running on port ${PORT}`);
+    if (BOT_TOKEN) {
+        client.login(BOT_TOKEN).catch(err => {
+            console.error('[Bot] Failed to login to Discord:', err);
+        });
+    } else {
+        console.error('[Bot] DISCORD_TOKEN is missing in environment variables!');
+    }
 });
