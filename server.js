@@ -84,7 +84,6 @@ app.get('/api/roster', async (req, res) => {
         const guild = await client.guilds.fetch(GUILD_ID).catch(() => null);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
-        // ضمان جلب كافة الأعضاء من السيرفر
         await guild.members.fetch().catch(() => {});
         const members = guild.members.cache;
         const roster = [];
@@ -208,14 +207,13 @@ app.delete('/api/special-units/:id', (req, res) => {
     }
 });
 
-// استخدام الحدث الصحيح ready لتفادي تعليق البوت
-client.once('ready', (c) => {
+// استخدام الحدث المحدث clientReady لتفادي التحذير نهائياً
+client.once('clientReady', (c) => {
     console.log(`[Bot] Logged in successfully as ${c.user.tag}`);
 });
 
 const PORT = process.env.PORT || 3000;
 
-// تشغيل سيرفر الـ Express أولاً لضمان استجابة المنصة (Railway)
 app.listen(PORT, () => {
     console.log(`[Server] Server is running on port ${PORT}`);
     if (BOT_TOKEN) {
