@@ -67,7 +67,7 @@ let lastFetchTime = 0;
 let cachedSpecialRoster = [];
 let lastSpecialFetchTime = 0;
 
-const CACHE_DURATION = 60 * 1000;
+const CACHE_DURATION = 60 * 1000; // تخزين مؤقت لمدة دقيقة كاملة
 
 // API 1: Legal Forces Roster
 app.get('/api/roster', async (req, res) => {
@@ -85,7 +85,8 @@ app.get('/api/roster', async (req, res) => {
         const guild = await client.guilds.fetch(GUILD_ID);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
-        const members = await guild.members.fetch({ force: true });
+        // الاعتماد على الكاش المحلي لتفادي Rate Limit (Opcode 8)
+        const members = guild.members.cache;
         const roster = [];
 
         members.forEach(member => {
@@ -109,6 +110,28 @@ app.get('/api/roster', async (req, res) => {
                 });
             }
         });
+
+        // إذا كان الكاش فارغاً تماماً، يتم جلبه لمرة واحدة فقط
+        if (roster.length === 0) {
+            const fetchedMembers = await guild.members.fetch();
+            fetchedMembers.forEach(member => {
+                if (member.user.bot) return;
+                const config = ROLE_MAPPINGS.find(c => member.roles.cache.has(c.id));
+                if (config) {
+                    const raw = member.displayName || member.user.username;
+                    const match = raw.match(/^\[?([A-Za-z0-9-]+)\]?\s*[\|-]?\s+(.+)$/);
+                    roster.push({
+                        id: member.id,
+                        badge: match ? match[1].trim() : config.badgePrefix,
+                        name: match ? match[2].trim() : raw,
+                        rank: config.rank,
+                        category: config.category,
+                        status: 'Active',
+                        avatar: member.user.displayAvatarURL({ dynamic: true, size: 128 })
+                    });
+                }
+            });
+        }
 
         roster.sort((a, b) => {
             const indexA = ROLE_MAPPINGS.findIndex(r => r.rank === a.rank);
@@ -142,7 +165,7 @@ app.get('/api/special-units', async (req, res) => {
         const guild = await client.guilds.fetch(GUILD_ID);
         if (!guild) return res.status(404).json({ error: 'Guild not found' });
 
-        const members = await guild.members.fetch({ force: true });
+        const members = guild.members.cache;
         const specialRoster = [];
 
         members.forEach(member => {
