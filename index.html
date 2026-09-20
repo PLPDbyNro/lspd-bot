@@ -30,8 +30,8 @@
         }
     </style>
 </head>
-<body class="min-h-screen p-6">
-    <div class="max-w-7xl mx-auto">
+<body class="min-h-screen p-6 flex flex-col justify-between">
+    <div class="max-w-7xl mx-auto w-full">
         
         <!-- شريط التنقل العلوي بين الصفحات -->
         <nav class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 border-b border-blue-900/40 pb-4">
@@ -237,7 +237,7 @@
                 <div class="bg-slate-900/80 border blue-border rounded-2xl p-6 shadow-xl blue-glow">
                     <h3 class="text-xl font-bold text-blue-400 mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>2. الاستيقاف المروري والجنائي</h3>
                     <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside">
-                        <li><strong>المروري:</strong> يبدأ بتشغيل السفتي (Q/A و ALT)، الوقوف بمحاذاة مركبة المخالف من اليسار، إطفاء محرك مركبة المواطن، وتبليغ العمليات بالمواصفات والسبب بكل احترام وتعرّيف رسمي.</li>
+                        <li><strong>المروري:</strong> يبدأ بتشغيل السفتي (Q/A و ALT), الوقوف بمحاذاة مركبة المخالف من اليسار، إطفاء محرك مركبة المواطن، وتبليغ العمليات بالمواصفات والسبب بكل احترام وتعرّيف رسمي.</li>
                         <li><strong>الجنائي:</strong> يتم في حالات الخطف، الإسقاط، القتل، والسرقات. ويتطلب طلب الدعم، إذن الاستيقاف، وتنزيل الشخص برفع الأيدي واتباع خطوات تفتيش دقيقة مع ذكر الحقوق القانونية.</li>
                     </ul>
                 </div>
@@ -308,6 +308,13 @@
         </div>
 
     </div>
+
+    <!-- تذييل الصفحة (Footer) مع الحقوق -->
+    <footer class="mt-16 py-6 border-t border-blue-900/30 text-center w-full">
+        <p class="text-xs text-slate-500 tracking-wider font-medium">
+            All rights reserved &copy; 2026 | Designed <span class="text-blue-400 font-semibold">by niiro</span>
+        </p>
+    </footer>
 
     <script>
         const API_URL = 'https://lspd-bot-production-8924.up.railway.app/api/roster';
