@@ -44,8 +44,8 @@
             <button onclick="switchTab('project2')" id="nav-project2" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
                 Radio Protocols & Codes
             </button>
-            <button onclick="switchTab('project3')" id="nav-project3" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
-                Department Laws Summary
+            <button onclick="switchTab('project4')" id="nav-project4" class="px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20">
+                Project 4 (Department Laws)
             </button>
         </nav>
 
@@ -165,45 +165,50 @@
             </div>
         </div>
 
-        <!-- المحتوى الرابع: قوانين وزارة الداخلية الشاملة (من 1 إلى 16) -->
-        <div id="tab-project3" class="tab-content hidden space-y-10">
+        <!-- المحتوى الرابع: قوانين وزارة الداخلية الشاملة (Project 4 - من 1 إلى 19) -->
+        <div id="tab-project4" class="tab-content hidden space-y-10">
             <div class="mb-6">
-                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Department Laws Summary (1 to 16)</h2>
-                <p class="text-slate-400 text-sm">قوانين وأنظمة وزارة الداخلية والأمن العام بالتفصيل.</p>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Project 4: Comprehensive Department Laws (1 to 19)</h2>
+                <p class="text-slate-400 text-sm">ملخص شامل لقوانين وأنظمة وزارة الداخلية، الاستيقاف، المطاردات، الراديو، الاشتباكات، والتفتيش.</p>
             </div>
 
-            <!-- جدول القوانين (مثال شامل من القانون 1 إلى 16) -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">قوانين القطاع الأمني (Department Laws 1 - 16)</h3>
+                    <h3 class="text-xl font-bold text-white tracking-wide">قوانين وأنظمة وزارة الداخلية (1 - 19)</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse" dir="rtl">
                         <thead>
                             <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
                                 <th class="py-3 px-6 text-right">التفاصيل والأحكام (Details)</th>
-                                <th class="py-3 px-6 text-right">العقوبة / الإجراء (Penalty)</th>
-                                <th class="py-3 px-6 text-right">رقم ووصف القانون (Law Item)</th>
+                                <th class="py-3 px-6 text-right">العقوبة / الإجراء المتبع (Penalty / Action)</th>
+                                <th class="py-3 px-6 text-right">البند / التصنيف (Law Item)</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">الاعتداء الجسدي على فرد من قوات الأمن أو إلحاق الضرر به.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن + غرامة مالية عالية</td><td class="py-4 px-6 blue-code text-right">Law 1: الاعتداء على رجل أمن</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">حمل أسلحة نارية غير مرخصة أو ممنوعة في الأماكن العامة.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مصادرة السلاح + سجن</td><td class="py-4 px-6 blue-code text-right">Law 2: حيازة سلاح غير مرخص</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">مخالفة قواعد المرور الخطيرة والقيادة المتهورة تعرض حياة الآخرين للخطر.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">سحب رخصة + غرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 3: القيادة المتهورة</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">عدم الامتثال لأوامر رجال الأمن والتوقف أثناء الدوريات.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">مضاعفة المخالفة + توقيف مؤقت</td><td class="py-4 px-6 blue-code text-right">Law 4: عدم الامتثال للأوامر</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">حيازة أو ترويج المواد المخدرة والمحظورة قانوناً.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مطول + غرامة صارمة</td><td class="py-4 px-6 blue-code text-right">Law 5: قضايا المخدرات</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">اقتحام المناطق العسكرية أو الأمنية المحظورة بدون تصريح رسمي.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">توقيف مباشر وغرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 6: دخول مناطق محظورة</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">المشاركة في عمليات السطو المسلح على المحلات والبنوك.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مشدد وغرامة كبرى</td><td class="py-4 px-6 blue-code text-right">Law 7: السطو والسرقة المسلحة</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">الهروب المتعمد من دوريات الشرطة أثناء المطاردات (Code 2).</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">تضمين تهمة الهروب + سجن إضافي</td><td class="py-4 px-6 blue-code text-right">Law 8: الهروب من العدالة</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">إطلاق النار العشوائي في الأماكن السكنية والعامة وتخويف المواطنين.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مصادرة الأسلحة وسجن</td><td class="py-4 px-6 blue-code text-right">Law 9: إطلاق نار عشوائي</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">سرقة المركبات الخاصة أو الحكومية واستخدامها في الجرائم.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة وسجن بتهمة السرقة</td><td class="py-4 px-6 blue-code text-right">Law 10: سرقة المركبات</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">اختطاف الأشخاص أو رجال الأمن والمساومة بهم.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">عقوبة جنائية قصوى وسجن طويل</td><td class="py-4 px-6 blue-code text-right">Law 11: جرائم الخطف والاحتجاز</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">التخريب المتعمد للممتلكات العامة والخاصة والمرافق الحيوية.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">دفع قيمة التلفيات + سجن</td><td class="py-4 px-6 blue-code text-right">Law 12: التخريب والإتلاف</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">إحداث الفوضى والشغب وتعطيل حركة المرور في التجمعات.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة مالية وتوقيف مؤقت</td><td class="py-4 px-6 blue-code text-right">Law 13: الشغب وإثارة الفوضى</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">انتحال شخصية رجل أمن أو موظف حكومي رسمي.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مشدد وغرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 14: انتحال الصفة الرسمية</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">تقديم بلاغات كاذبة ومضللة لغرف العمليات وقوات الأمن.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة مالية وتوقيف تأديبي</td><td class="py-4 px-6 blue-code text-right">Law 15: البلاغات الكاذبة</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">مخالفة اللوائح الإدارية والتعليمات الداخلية لمنسوبي القطاع.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">إجراء إداري / خصم / إيقاف</td><td class="py-4 px-6 blue-code text-right">Law 16: اللوائح والتعليمات الداخلية</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">عدم التسلط، الاحترام المتبادل، والجدية التامة وتقمص الشخصية العسكرية لابعاد حد.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">محاسبة إدارية من الشؤون</td><td class="py-4 px-6 blue-code text-right">قوانين الداخلية العامة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">منع التجارة أو بيع أو إعطاء معدات الشرطة للمواطنين أو المسعفين.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">باند نهائي + محاسبة إدارية</td><td class="py-4 px-6 blue-code text-right">معدات الشرطة والممنوعات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">عدم رفع السلاح الناري أو التيزر إلا في حالات القصوى والضرورة القصوى.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">مساءلة تأديبية</td><td class="py-4 px-6 blue-code text-right">استخدام الأسلحة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">إجراءات الاستيقاف المروري: تشغيل السفتي، التوقف بيسار المركبة، تبليغ العمليات.</td><td class="py-4 px-6 text-slate-300 text-right">معالجة المخالفة وضمان السلامة</td><td class="py-4 px-6 blue-code text-right">2. الاستيقاف المروري</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">التعامل مع المجرمين: تلاوة الحقوق، تفتيش كامل، سحب الممنوعات، وإدخال الزنزانة.</td><td class="py-4 px-6 text-slate-300 text-right">تطبيق العقوبة وحسب التهم</td><td class="py-4 px-6 blue-code text-right">3. التعامل مع المجرمين</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين المطاردات: بحد أقصى 3 دوريات بعد إذن الدسباتش، تحديث البلاغ كل 10-30 ثانية.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">مخالفة الأوامر / خصم</td><td class="py-4 px-6 blue-code text-right">4. قوانين المطاردات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين الراديو: منع المزح والالفاظ النابية، وعدم مقاطعة البلاغات إلا للضرورة القصوى.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">خصم إداري</td><td class="py-4 px-6 blue-code text-right">5. قوانين الراديو</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين الاشتباكات: تأمين الموقع، محاصرة الأطراف، انتظار الأوامر، وتجنب الاجتهادات الفردية.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مخالفة بنود الداخلية</td><td class="py-4 px-6 blue-code text-right">6. قوانين الاشتباكات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين إطلاق النار: يمنع إطلاق النار بدون تحذير لفظي أو طلقة تحذيرية إلا عند مبادرة إطلاق النار.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">تحقيق ومساءلة جنائية/إدارية</td><td class="py-4 px-6 blue-code text-right">7. قوانين إطلاق النار</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين النطح: مسموح بشروط (الشخص غير حامل سلاح ناري، وفارق 5 ثواني بين النطحات).</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">محاسبة في حال المخالفة</td><td class="py-4 px-6 blue-code text-right">8. قوانين النطح</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين التيزر: فارق 10 ثواني بين الطلقات، ويمنع منعاً باتاً استخدامه على حامل سلاح ناري.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">محاسبة تأديبية</td><td class="py-4 px-6 blue-code text-right">9. قوانين التيزر</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">مصطلحات عامة: ديسباتش، نائب ديسباتش، مسؤول الحالة، المفاوض، ومسؤول الفترة.</td><td class="py-4 px-6 text-slate-300 text-right">تنظيم العمل الميداني</td><td class="py-4 px-6 blue-code text-right">10. مصطلحات عامة مهمة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">التعامل مع الطاقم الطبي: وضع المسعفين والمسقطين على الأسرة، وعدم التصرف كمسعف.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">إجراء إداري</td><td class="py-4 px-6 blue-code text-right">11. الطاقم الطبي</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">شروط الخروج الآمن: ضوابط الهروب على مركبة أرضية، الجوي، والالتزام بالمسارات.</td><td class="py-4 px-6 text-slate-300 text-right">إفشال الخروج الآمن</td><td class="py-4 px-6 blue-code text-right">12. شروط الخروج الآمن</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين التفاوض: دور المفاوض، التزام الأطراف، ومنع التلفظ لضمان الحل السلمي.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">خصم وقت / مداهمة</td><td class="py-4 px-6 blue-code text-right">13. قوانين التفاوض</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">محاماة وتظلم: شروط طلب محامي للمحكوميات فوق 10-20 شهر وفي السرقات.</td><td class="py-4 px-6 text-slate-300 text-right">حقوق قانونية للمواطن</td><td class="py-4 px-6 blue-code text-right">14. طلب محامي</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين الإعدام: تجاوز المحكومية الغير منفذة 60-70 شهر، التحريض على الجرائم وبيع الأسلحة.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">عقوبة الإعدام الجنائي</td><td class="py-4 px-6 blue-code text-right">قوانين الإعدام</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">أعداد الوحدات: تحديد أقصى عدد دوريات للقضايا الجنائية (ATM، بقالة، منزل).</td><td class="py-4 px-6 text-slate-300 text-right">تنظيم الانتشار الأمني</td><td class="py-4 px-6 blue-code text-right">15. أعداد الوحدات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">أقسام الشرطة الرسمية: إدارة الشرطة، الشؤون الداخلية، والأكاديمية (FTO).</td><td class="py-4 px-6 text-slate-300 text-right">الهيكل الإداري</td><td class="py-4 px-6 blue-code text-right">16. أقسام الشرطة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">أولوية التعامل مع الحالات: تقسيم الأولويات (عادية، متوسطة، عالية) حسب البلاغات.</td><td class="py-4 px-6 text-slate-300 text-right">توجيه العمليات</td><td class="py-4 px-6 blue-code text-right">17. أولوية التعامل</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين SWAT: استخدام الأسلحة الثقيلة، التدخل في قضايا الفساد، ومداهمة المقرات.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">صلاحيات خاصة متقدمة</td><td class="py-4 px-6 blue-code text-right">18. قوانين SWAT</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">قوانين المداهمات والتراكر: بطلب من الوزير أو الجينرال، وضوابط وضع التراكر للمطلوبين.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مداهمة ومتابعة أمنية</td><td class="py-4 px-6 blue-code text-right">19. المداهمات والتراكر</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -242,17 +247,17 @@
             const policeTab = document.getElementById('tab-police');
             const specialTab = document.getElementById('tab-special');
             const project2Tab = document.getElementById('tab-project2');
-            const project3Tab = document.getElementById('tab-project3');
+            const project4Tab = document.getElementById('tab-project4');
             
             const navPolice = document.getElementById('nav-police');
             const navSpecial = document.getElementById('nav-special');
             const navProject2 = document.getElementById('nav-project2');
-            const navProject3 = document.getElementById('nav-project3');
+            const navProject4 = document.getElementById('nav-project4');
 
             policeTab.classList.add('hidden');
             specialTab.classList.add('hidden');
             project2Tab.classList.add('hidden');
-            project3Tab.classList.add('hidden');
+            project4Tab.classList.add('hidden');
 
             const defaultNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-blue-500/20";
             const activeNavClass = "px-6 py-2.5 rounded-xl font-bold transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/20";
@@ -261,7 +266,7 @@
             navPolice.className = defaultNavClass;
             navSpecial.className = defaultNavClass;
             navProject2.className = defaultNavClass;
-            navProject3.className = defaultNavClass;
+            navProject4.className = defaultNavClass;
 
             if (tabName === 'police') {
                 policeTab.classList.remove('hidden');
@@ -272,9 +277,9 @@
             } else if (tabName === 'project2') {
                 project2Tab.classList.remove('hidden');
                 navProject2.className = activeNavClass;
-            } else if (tabName === 'project3') {
-                project3Tab.classList.remove('hidden');
-                navProject3.className = activeNavClass;
+            } else if (tabName === 'project4') {
+                project4Tab.classList.remove('hidden');
+                navProject4.className = activeNavClass;
             }
         }
 
