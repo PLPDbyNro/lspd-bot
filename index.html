@@ -79,7 +79,7 @@
             <div id="roster-container" class="space-y-8"></div>
         </div>
 
-        <!-- المحتوى الثاني: مشروع الوحدات الخاصة والأجنحة (Special Units Roster) -->
+        <!-- المحتوى الثاني: الوحدات الخاصة -->
         <div id="tab-special" class="tab-content hidden">
             <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-blue-900/40 pb-6">
                 <div class="flex items-center gap-5">
@@ -109,14 +109,13 @@
             <div id="special-roster-container" class="space-y-8"></div>
         </div>
 
-        <!-- المحتوى الثالث: مشروع الأكواد والبروتوكولات (Radio Protocols) -->
+        <!-- المحتوى الثالث: الأكواد والبروتوكولات -->
         <div id="tab-project2" class="tab-content hidden space-y-10">
             <div class="mb-6">
                 <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Radio Protocols & Codes</h2>
                 <p class="text-slate-400 text-sm">Radio calls, codes, how they are spoken, and what they mean.</p>
             </div>
 
-            <!-- جدول الأكواد الرئيسية (Codes) -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
@@ -152,54 +151,6 @@
                 </div>
             </div>
 
-            <!-- جدول أكواد الصفر (Codes 0) -->
-            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
-                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 0</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse" dir="rtl">
-                        <thead>
-                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
-                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
-                                <th class="py-3 px-6 text-right">CALL (طريقة النطق)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">هل أنت في الاستماع ؟</td><td class="py-4 px-6 text-slate-300 text-right">هل أنت في الخدمة</td><td class="py-4 px-6 blue-code text-right">0-2</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">أرسل، أنا أستمع</td><td class="py-4 px-6 text-slate-300 text-right">في الاستماع</td><td class="py-4 px-6 blue-code text-right">0-3</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- جدول أكواد العشرة (Codes 10) -->
-            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
-                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <h3 class="text-xl font-bold text-white tracking-wide">Codes 10</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse" dir="rtl">
-                        <thead>
-                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-6 text-right">EXAMPLE (المثال)</th>
-                                <th class="py-3 px-6 text-right">MEANING (المعنى)</th>
-                                <th class="py-3 px-6 text-right">CALL (طريقة النطق)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800/60 text-sm">
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">لا توجد نتائج</td><td class="py-4 px-6 text-slate-300 text-right">سلبي</td><td class="py-4 px-6 blue-code text-right">10-2</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">تم الاستلام</td><td class="py-4 px-6 text-slate-300 text-right">وصلت الرسالة</td><td class="py-4 px-6 blue-code text-right">10-4</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">احتاج دعم اضافي</td><td class="py-4 px-6 text-slate-300 text-right">طلب تعزيز</td><td class="py-4 px-6 blue-code text-right">10-5</td></tr>
-                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-100 text-right font-medium">اعد اخر رسالة</td><td class="py-4 px-6 text-slate-300 text-right">اعادة الرسالة</td><td class="py-4 px-6 blue-code text-right">10-9</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
             <!-- خريطة القطاعات -->
             <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
                 <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
@@ -214,12 +165,49 @@
             </div>
         </div>
 
-        <!-- المحتوى الرابع: قوانين وزارة الداخلية الشاملة -->
+        <!-- المحتوى الرابع: قوانين وزارة الداخلية الشاملة (من 1 إلى 16) -->
         <div id="tab-project3" class="tab-content hidden space-y-10">
             <div class="mb-6">
-                <h2 class="text-3xl font-extrabold text-white tracking-tight">Department Laws Summary (1 to 16)</h2>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Department Laws Summary (1 to 16)</h2>
+                <p class="text-slate-400 text-sm">قوانين وأنظمة وزارة الداخلية والأمن العام بالتفصيل.</p>
             </div>
-            <!-- الجداول الخاصة بالقوانين تبقى كما هي -->
+
+            <!-- جدول القوانين (مثال شامل من القانون 1 إلى 16) -->
+            <div class="bg-slate-900/80 border blue-border rounded-2xl shadow-xl overflow-hidden blue-glow">
+                <div class="bg-gradient-to-r from-blue-950/60 via-slate-900 to-slate-900 px-6 py-4 border-b border-blue-900/30 flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <h3 class="text-xl font-bold text-white tracking-wide">قوانين القطاع الأمني (Department Laws 1 - 16)</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" dir="rtl">
+                        <thead>
+                            <tr class="bg-slate-950/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-6 text-right">التفاصيل والأحكام (Details)</th>
+                                <th class="py-3 px-6 text-right">العقوبة / الإجراء (Penalty)</th>
+                                <th class="py-3 px-6 text-right">رقم ووصف القانون (Law Item)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 text-sm">
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">الاعتداء الجسدي على فرد من قوات الأمن أو إلحاق الضرر به.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن + غرامة مالية عالية</td><td class="py-4 px-6 blue-code text-right">Law 1: الاعتداء على رجل أمن</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">حمل أسلحة نارية غير مرخصة أو ممنوعة في الأماكن العامة.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مصادرة السلاح + سجن</td><td class="py-4 px-6 blue-code text-right">Law 2: حيازة سلاح غير مرخص</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">مخالفة قواعد المرور الخطيرة والقيادة المتهورة تعرض حياة الآخرين للخطر.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">سحب رخصة + غرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 3: القيادة المتهورة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">عدم الامتثال لأوامر رجال الأمن والتوقف أثناء الدوريات.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">مضاعفة المخالفة + توقيف مؤقت</td><td class="py-4 px-6 blue-code text-right">Law 4: عدم الامتثال للأوامر</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">حيازة أو ترويج المواد المخدرة والمحظورة قانوناً.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مطول + غرامة صارمة</td><td class="py-4 px-6 blue-code text-right">Law 5: قضايا المخدرات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">اقتحام المناطق العسكرية أو الأمنية المحظورة بدون تصريح رسمي.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">توقيف مباشر وغرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 6: دخول مناطق محظورة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">المشاركة في عمليات السطو المسلح على المحلات والبنوك.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مشدد وغرامة كبرى</td><td class="py-4 px-6 blue-code text-right">Law 7: السطو والسرقة المسلحة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">الهروب المتعمد من دوريات الشرطة أثناء المطاردات (Code 2).</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">تضمين تهمة الهروب + سجن إضافي</td><td class="py-4 px-6 blue-code text-right">Law 8: الهروب من العدالة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">إطلاق النار العشوائي في الأماكن السكنية والعامة وتخويف المواطنين.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">مصادرة الأسلحة وسجن</td><td class="py-4 px-6 blue-code text-right">Law 9: إطلاق نار عشوائي</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">سرقة المركبات الخاصة أو الحكومية واستخدامها في الجرائم.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة وسجن بتهمة السرقة</td><td class="py-4 px-6 blue-code text-right">Law 10: سرقة المركبات</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">اختطاف الأشخاص أو رجال الأمن والمساومة بهم.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">عقوبة جنائية قصوى وسجن طويل</td><td class="py-4 px-6 blue-code text-right">Law 11: جرائم الخطف والاحتجاز</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">التخريب المتعمد للممتلكات العامة والخاصة والمرافق الحيوية.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">دفع قيمة التلفيات + سجن</td><td class="py-4 px-6 blue-code text-right">Law 12: التخريب والإتلاف</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">إحداث الفوضى والشغب وتعطيل حركة المرور في التجمعات.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة مالية وتوقيف مؤقت</td><td class="py-4 px-6 blue-code text-right">Law 13: الشغب وإثارة الفوضى</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">انتحال شخصية رجل أمن أو موظف حكومي رسمي.</td><td class="py-4 px-6 text-rose-400 text-right font-semibold">سجن مشدد وغرامة مالية</td><td class="py-4 px-6 blue-code text-right">Law 14: انتحال الصفة الرسمية</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">تقديم بلاغات كاذبة ومضللة لغرف العمليات وقوات الأمن.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">غرامة مالية وتوقيف تأديبي</td><td class="py-4 px-6 blue-code text-right">Law 15: البلاغات الكاذبة</td></tr>
+                            <tr class="hover:bg-blue-950/20 transition"><td class="py-4 px-6 text-slate-300 text-right">مخالفة اللوائح الإدارية والتعليمات الداخلية لمنسوبي القطاع.</td><td class="py-4 px-6 text-amber-400 text-right font-semibold">إجراء إداري / خصم / إيقاف</td><td class="py-4 px-6 blue-code text-right">Law 16: اللوائح والتعليمات الداخلية</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -456,7 +444,6 @@
             });
         }
 
-        // Fetch initial data on load
         window.onload = () => {
             fetchLiveRoster();
             fetchSpecialLiveRoster();
